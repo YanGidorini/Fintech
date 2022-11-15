@@ -1,5 +1,10 @@
 package br.com.fintech.model;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Usuario {
 	private int idUsuario;
 	private String nmUsuario;
@@ -26,6 +31,15 @@ public class Usuario {
 		this.setEmail(email);
 		this.setSenha(senha);
 		this.setGenero(genero);
+	}
+	
+	private String encrypt(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+		algorithm.update(senha.getBytes("UTF-8"));
+		
+		BigInteger hash = new BigInteger(1, algorithm.digest());
+		
+		return hash.toString(16);
 	}
 	
 	@Override
@@ -57,7 +71,14 @@ public class Usuario {
 		return senha;
 	}
 	public void setSenha(String senha) {
-		this.senha = senha;
+		try {
+			this.senha = encrypt(senha);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public int getIdUsuario() {
 		return idUsuario;
