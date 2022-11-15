@@ -16,6 +16,11 @@ public class Usuario {
 	
 	public Usuario() {}
 	
+	public Usuario(String email, String senha) {
+		this.setEmail(email);
+		this.setSenha(senha);
+	}
+	
 	public Usuario(String nmUsuario, String dtNascimento, String email, String senha, String genero) {
 		this.setNmUsuario(nmUsuario);
 		this.setDtNascimento(dtNascimento);
