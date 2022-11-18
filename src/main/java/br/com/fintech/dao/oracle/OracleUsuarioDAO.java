@@ -41,7 +41,7 @@ public class OracleUsuarioDAO implements DefaultDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+	
 			try {
 				stmt.close();
 				conn.close();
