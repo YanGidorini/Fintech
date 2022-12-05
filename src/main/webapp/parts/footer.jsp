@@ -1,7 +1,6 @@
 <footer class="footer container-fluid">
-    <div class="container-xxl  d-flex justify-content-between">
-        <address>Feito por <a href="https://www.linkedin.com/in/yan-gidorini-049978235/" rel="author" target="_blank">Yan Gidorni Silva</a></address>
-        <span>RM96190</span>
+    <div class="container-xxl  d-flex justify-content-end">
+        <address><i>Feito por <a href="https://www.linkedin.com/in/yan-gidorini-049978235/" rel="author" target="_blank">Yan Gidorni Silva</a></i></address>
     </div>
 </footer>
 
