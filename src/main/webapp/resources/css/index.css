@@ -137,28 +137,30 @@ a {
     padding: var(--spacing-sm) 1rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
+.header__logo{
+	display: none;
+}
 
-.header_logo img{
+.header__logo img{
     width: calc(120px + 1.2vw);
     height: auto;
 }
-.header_logo--loginon img{
+.header__logo--login img{
     width: calc(180px + 1.2vw);
     height: auto;
 }
 
-.header_nav{
+.header__nav{
     display: none;
     gap: calc(var(--spacing-12) + 1vw);
 }
 
-.header_nav-item
-{
+.header__item {
     fill: white;
     height: var(--icon-size);
     width: var(--icon-size);
 }
-.header_nav-item:hover{
+.header__item:hover{
     fill: var(--light-cta);
     filter: drop-shadow(var(--glow));
 }
@@ -175,7 +177,7 @@ a {
     fill: var(--light-cta);
 }
 
-.header_account:hover {
+.header__account:hover {
     filter: drop-shadow(var(--glow));
 }
 
@@ -186,10 +188,10 @@ a[title="Minha conta"]{
 a[title="Minha conta"]:hover{
     color: var(--light-cta);
 }
-.header_account > span{
+.header__account-name{
     margin-right: calc(var(--spacing-12) - 4.8px);
 }
-.header_account-photo {
+.header__account-photo {
     height: var(--icon-size);
     width: var(--icon-size);
     border-radius: 50%;
@@ -197,12 +199,11 @@ a[title="Minha conta"]:hover{
     display: flex;
     align-items: center;
 }
-.header_account-photo img {
+.header__account-photo img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
-
 
 /*---------------------------------------------*\
     #FOOTER
@@ -231,7 +232,6 @@ a[title="Minha conta"]:hover{
         padding-bottom: var(--spacing-sm);
     }
  }
-
 
 /*---------------------------------------------*\
     #MOBILE-MENU
