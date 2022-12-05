@@ -16,11 +16,12 @@ public class Usuario {
 	
 	public Usuario() {}
 	
-	public Usuario(String email, String senha) {
+	public Usuario(String email, String senha) {	
 		this.setEmail(email);
 		this.setSenha(senha);
 	}
 	
+	//Método usado para insert no banco de dados
 	public Usuario(String nmUsuario, String dtNascimento, String email, String senha, String genero) {
 		this.setNmUsuario(nmUsuario);
 		this.setDtNascimento(dtNascimento);
@@ -29,12 +30,21 @@ public class Usuario {
 		this.setGenero(genero);
 	}
 	
+	//Método usado no selectAll
 	public Usuario(int idUsuario, String nmUsuario, String dtNascimento, String email, String senha, String genero) {
 		this.setIdUsuario(idUsuario);
 		this.setNmUsuario(nmUsuario);
 		this.setDtNascimento(dtNascimento);
 		this.setEmail(email);
-		this.setSenha(senha);
+		this.senha = senha; //Para não encriptar o hash que vem do banco de dados
+		this.setGenero(genero);
+	}
+	
+	public Usuario(int idUsuario, String nmUsuario, String dtNascimento, String email, String genero) {
+		this.setIdUsuario(idUsuario);
+		this.setNmUsuario(nmUsuario);
+		this.setDtNascimento(dtNascimento);
+		this.setEmail(email);
 		this.setGenero(genero);
 	}
 	

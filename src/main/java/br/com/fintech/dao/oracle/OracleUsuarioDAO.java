@@ -167,7 +167,7 @@ public class OracleUsuarioDAO implements DefaultDAO {
 		try {
 			conn = DBConnectionManager.getInstance().getConn();
 
-			String sql = "SELECT cd_usuario, nm_usuario, TO_CHAR(dt_nascimento, 'YYYY-MM-DD') as dt_nascimento, ds_email, ds_senha, genero "
+			String sql = "SELECT cd_usuario, nm_usuario, TO_CHAR(dt_nascimento, 'YYYY-MM-DD') as dt_nascimento, ds_email, genero "
 						+ "FROM t_usuario WHERE cd_usuario = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
@@ -177,9 +177,8 @@ public class OracleUsuarioDAO implements DefaultDAO {
 				String nm = result.getString("NM_USUARIO");
 				String dtNascimento = result.getString("DT_NASCIMENTO");
 				String email = result.getString("DS_EMAIL");
-				String senha = result.getString("DS_SENHA");
 				String genero = result.getString("GENERO");
-				user = new Usuario (id, nm, dtNascimento, email, senha, genero);
+				user = new Usuario (id, nm, dtNascimento, email, genero);
 			}
 			
 		} catch (SQLException e) {
@@ -243,8 +242,40 @@ public class OracleUsuarioDAO implements DefaultDAO {
 			System.out.println("A senha atual digitada não é igual a senha cadastrada.");
 		}
 		
-
 	}
 	
+	public int authenticate(Usuario user) {
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		int id = 0;
+		
+		try {
+			conn = DBConnectionManager.getInstance().getConn();
 
+			String sql = "SELECT cd_usuario FROM t_usuario WHERE ds_email = ? AND ds_senha = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, user.getEmail());
+			stmt.setString(2, user.getSenha());
+			
+			result = stmt.executeQuery();
+			
+			if(result.next()) {
+				id = result.getInt("CD_USUARIO");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				conn.close();
+				stmt.close();
+				result.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return id;
+	}
 }

@@ -32,12 +32,10 @@ public class DBConnectionManager {
 	    	String driver = "oracle.jdbc.driver.OracleDriver";
 	    	Class.forName(driver); //Registra o Driver
 	    	
-	    	String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-	    	String user= "RM96190";
+	    	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	    	String user= "System";
 	    	String pswd = "160104";
 	        conn = DriverManager.getConnection(url, user, pswd); //Abre uma conexão
-	        
-	        System.out.println("Conectado ao banco de dados!");
 		} catch (SQLException e) {
 			System.err.println("Não foi possível conectar no Banco de Dados");
 			e.printStackTrace();
