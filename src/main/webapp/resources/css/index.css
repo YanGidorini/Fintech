@@ -245,12 +245,12 @@ a[title="Minha conta"]:hover{
     text-align: center;
     width: 100%;
 }
-.mobile-menu_item{
+.mobile-menu__item{
     fill: white;
     height: calc(var(--icon-size) + 2px);
     width: calc(var(--icon-size) + 2px);
 }
-.mobile-menu_item:hover{
+.mobile-menu__item:hover{
     fill: var(--light-cta);
     filter: drop-shadow(var(--glow));
 }
@@ -265,7 +265,7 @@ a[title="Minha conta"]:hover{
 .mobile-menu .target:hover circle:last-child{
     fill: var(--light-cta);
 }
-.mobile-menu_add{
+.mobile-menu__add{
     background-color: var(--cta);
     text-decoration: none;
     color: white;
@@ -280,7 +280,7 @@ a[title="Minha conta"]:hover{
     bottom: 50%; right: 1rem;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
 }
-.mobile-menu_add:hover{
+.mobile-menu__add:hover{
     color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
