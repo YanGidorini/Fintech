@@ -28,32 +28,32 @@
 				</c:if>
             
                 <p class="title text-start">Cadastre-se</p>
-                <div class="card-default p-4 mb-3 position-relative">
+                <div class="card--default p-4 mb-3 position-relative">
                     <form class="form text-start" action="usuario" method="POST">
                     	<input type="hidden" value="cadastrar" name="task">
-                        <div class="form__input">
-                            <label for="email" class="form__label">E-mail<span class="mandatory">*</span></label>
-                            <input id="email" type="email" name="email" required>
+                        <div class="form__input-group">
+                            <label for="email" class="form__label">E-mail<span class="form__mandatory">*</span></label>
+                            <input  class="form__input" id="email" type="email" name="email" required>
                         </div>
                         
-                        <div class="form__input">
-                            <label for="pswd" class="form__label">Senha<span class="mandatory">*</span></label>
-                            <input id="pswd" type="password" name="pswd" placeholder="6 ou mais caracteres" required>
+                        <div class="form__input-group">
+                            <label for="pswd" class="form__label">Senha<span class="form__mandatory">*</span></label>
+                            <input class="form__input" id="pswd" type="password" name="pswd" placeholder="6 ou mais caracteres" required>
                         </div>
 
-                        <div class="form__input">
-                            <label for="nome" class="form__label">Nome<span class="mandatory">*</span></label>
-                            <input id="nome" type="text" name="nome" required>
+                        <div class="form__input-group">
+                            <label for="nome" class="form__label">Nome<span class="form__mandatory">*</span></label>
+                            <input class="form__input" id="nome" type="text" name="nome" required>
                         </div>
                                  
-                        <div class="form__input">
-                            <label for="data" class="form__label">Data de nascimento<span class="mandatory">*</span></label>
-                            <input id="data" type="date" name="dtNasc" required>
+                        <div class="form__input-group">
+                            <label for="data" class="form__label">Data de nascimento<span class="form__mandatory">*</span></label>
+                            <input class="form__input form__input--date" id="data" type="date" name="dtNasc" required>
                         </div>
 
-                        <div class="form__input--select">
-                            <label for="genero" class="form__label form__label--select">Gênero<span class="mandatory">*</span></label>
-                            <select id="genero" name="genero" required>
+                        <div class="form__input-group">
+                            <label for="genero" class="form__label form__label--select">Gênero<span class="form__mandatory">*</span></label>
+                            <select class="form__input form__input--select" id="genero" name="genero" required>
                                 <option value="" selected disabled>Selecione</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Feminino</option>

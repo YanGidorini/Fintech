@@ -79,12 +79,13 @@ body{
     font-weight: 500;
 }
 
-.card-default {
+.card--default {
     background-color: white;
     box-shadow: var(--shadow-default);
     border-radius: 5px;
     overflow: hidden;
     text-align: center;
+    padding: 1rem;
 }
 
 .button {
@@ -314,14 +315,14 @@ a[title="Minha conta"]:hover{
     transition: all .5s ease;
     transform: rotateY(60deg);
 }
-.add_circle {
+.add__circle {
     background-color: var(--cta);
     border-radius: 50%;
     padding: 1.5rem;
     box-shadow: var(--shadow-default);
     transition: all .5s ease;
 }
-.add_circle img {
+.add__circle img {
     height: 1.5rem;
     width: 1.5rem;
 }
@@ -329,7 +330,7 @@ a[title="Minha conta"]:hover{
     color: white;
     filter: drop-shadow(var(--shadow-default-hover));
 }
-.add:hover .add_circle {
+.add:hover .add__circle {
     box-shadow: none;
 }
 .add:hover span {
@@ -453,14 +454,6 @@ progress::-webkit-progress-value {
     .categoria_tag--acoes {
         background-color: #29bf12;
     }
-    
-
-
-/*---------------------------------------------*\
-    #receitas
-\*---------------------------------------------*/
-
-
 
 /*---------------------------------------------*\
     #investimentos
@@ -484,7 +477,7 @@ progress::-webkit-progress-value {
 }
 
 /*---------------------------------------------*\
-    #login e logon
+    #forms
 \*---------------------------------------------*/
 
 input {
@@ -495,54 +488,66 @@ input {
     row-gap: 1.5rem;
     flex-direction: column;
 }
-.form__input {
-    border: 1px solid #000000;
-    border-radius: 5px;
-    position: relative;
-    padding: .5rem;
-}
-.form__input--select {
-    position: relative;
-}
-.form__input input {
+.form__input-group {
+	display: flex;
     width: 100%;
-    height: 100%;
+    position: relative;
 }
+.form__input {
+	position: relative;
+    flex: 1 1 auto;
+    padding: .375rem .75rem;
+    background-color: #fff;
+    border: 1px solid #aeb8c1;
+    border-radius: 5px;
+    outline: 0;
+}
+.form__input:focus {
+	border-color: rgba(18,220,139,0.3);
+	box-shadow: 0px 0px 0rem .25rem rgba(18,220,139,0.2);
+}
+
 .form__label {
     position: absolute;
-    left: .5rem;
-    transform: translateY(-95%);
-    padding: .25rem;
-    z-index: 0;
+    left: 0.75rem;
+    transform: translateY(-55%);
+    z-index: 10;
     background-color: white;
     line-height: .5rem;
+}
+
+.form__mandatory {
+    color: var(--despesa-color);
+}
+
+.form__input--select {
+	cursor: pointer;
+    flex-grow: 0;
 }
 .form__label--select {
     transform: translateY(-50%);
 }
-.mandatory {
-    color: var(--despesa-color);
-}
-select {
-    cursor: pointer;
-    border-radius: 5px;
-    padding: .5rem;
-    border: 1px solid #000000;
-    width: 50%;
+.form__input--date {
+	flex-grow: 0;
+	width: 50%;
 }
 .form__btn {
-    background-color: var(--cta);
-    color: white;
+	align-self: center;
+	
+    background-color: #fff;
+    color: var(--cta);
     border-radius: 5px;
     padding: .75rem;
     width: min-content;
-    border: none;
-    align-self: center;
-    transition: box-shadow .2s ease-in-out;
+    border: 1px solid var(--cta);
+    font-weight: bold;
+    transition: all .2s ease-in-out;
 }
 .form__btn:hover {
-    box-shadow: var(--shadow-default-hover);
+    background-color: var(--cta);
+    color: #fff;
 }
+
 .forgot-pswd {
     position: absolute;
     width: max-content;
@@ -616,4 +621,22 @@ select {
 .account-photo:hover::after {
     opacity: 0.9;
 }
+    
+/*---------------------------------------------*\
+    #adicionar
+\*---------------------------------------------*/
+.adicionar__btn{
+	display: block;
+	background: #FFFFFF;
+	border: 1px solid #12DC8B;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+	border-radius: 50rem;
+	color: var(--cta);
+	font-weight: bold;
+	padding: 1rem 2rem;
+}
 
+.adicionar__btn--selected{
+	color: #fff;
+	background:  var(--cta);
+}

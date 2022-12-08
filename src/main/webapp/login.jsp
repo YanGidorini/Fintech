@@ -24,17 +24,17 @@
 				</c:if>
             
                 <p class="title text-start">Entrar</p>
-                <div class="card-default p-4 mb-3 position-relative">
+                <div class="card--default p-4 mb-3 position-relative">
                     <form class="form text-start" action="usuario" method="POST">
                     	<input type="hidden" value="login" name="task">
-                        <div class="form__input">
-                            <label for="email" class="form__label">E-mail<span class="mandatory">*</span></label>
-                            <input id="email" type="email" name="email" required>
+                        <div class="form__input-group">
+                            <label for="email" class="form__label">E-mail<span class="form__mandatory">*</span></label>
+                            <input class="form__input" id="email" type="email" name="email" required>
                         </div>
                         
-                        <div class="form__input">
-                            <label for="pswd" class="form__label">Senha<span class="mandatory">*</span></label>
-                            <input id="pswd" type="password" name="pswd" placeholder="6 ou mais caracteres" required>
+                        <div class="form__input-group">
+                            <label for="pswd" class="form__label">Senha<span class="form__mandatory">*</span></label>
+                            <input class="form__input" id="pswd" type="password" name="pswd" placeholder="6 ou mais caracteres" required>
                             <a href="" class="forgot-pswd">Esqueceu a senha?</a>
                         </div>
                         
