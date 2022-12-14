@@ -10,8 +10,8 @@
 <body>
     <main class="container-sm main-container d-flex flex-column text-center">
         <picture class="header__logo--login mb-4">
-            <source srcset="./resources/imgs/FintechLogoDark.png" media="(min-width: 1024px)">
-            <img src="./resources/imgs/FintechLogoDark.png" alt="Logo Fintech">
+            <source srcset="${pageContext.request.contextPath}/resources/imgs/FintechLogoDark.png" media="(min-width: 1024px)">
+            <img src="${pageContext.request.contextPath}/resources/imgs/FintechLogoDark.png" alt="Logo Fintech">
         </picture>
 			
         <div class="row justify-content-center px-2 p-sm-0">
@@ -38,7 +38,7 @@
                         
                         <div class="form__input-group">
                             <label for="pswd" class="form__label">Senha<span class="form__mandatory">*</span></label>
-                            <input class="form__input" id="pswd" type="password" name="pswd" placeholder="6 ou mais caracteres" required>
+                            <input class="form__input" id="pswd" type="password" name="pswd" placeholder="6 a 32 caracteres" minlength="6" maxlength="32" required>
                         </div>
 
                         <div class="form__input-group">
