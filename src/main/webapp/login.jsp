@@ -25,14 +25,14 @@
             
                 <p class="title text-start">Entrar</p>
                 <div class="card--default p-4 mb-3 position-relative">
-                    <form class="form text-start" action="usuario" method="POST">
+                    <form class="form" action="usuario" method="POST">
                     	<input type="hidden" value="login" name="task">
-                        <div class="form__input-group">
+                        <div class="form__input-field">
                             <label for="email" class="form__label">E-mail<span class="form__mandatory">*</span></label>
                             <input class="form__input" id="email" type="email" name="email" required>
                         </div>
                         
-                        <div class="form__input-group">
+                        <div class="form__input-field">
                             <label for="pswd" class="form__label">Senha<span class="form__mandatory">*</span></label>
                             <input class="form__input" id="pswd" type="password" name="pswd" minlength="6" maxlength="32" required>
                             <a href="" class="forgot-pswd">Esqueceu a senha?</a>
