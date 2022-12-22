@@ -24,7 +24,7 @@ public class AutenticacaoFilter extends HttpFilter implements Filter {
 		
 		String servletPath = req.getServletPath();
 		System.out.println("ServletPath:  " + servletPath);
-		
+		System.out.println("contextPath:  " + req.getContextPath());
 		System.out.println("sessionID :  " + session.getId());
 		System.out.println("User  " + session.getAttribute("user"));				
 		

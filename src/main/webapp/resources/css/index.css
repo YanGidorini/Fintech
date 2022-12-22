@@ -81,7 +81,7 @@ body{
 
 .card--default {
     background-color: white;
-    box-shadow: var(--shadow-default);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 15%);
     border-radius: 5px;
     overflow: hidden;
     text-align: center;
@@ -114,6 +114,9 @@ body{
     .button {
         padding: .5rem;
     }
+}
+.cursor-pointer {
+	cursor: pointer;
 }
 
 .mes_vigente {
@@ -229,7 +232,7 @@ a[title="Minha conta"]:hover{
         position: relative;
         padding-bottom: calc(var(--spacing-md) * 4);
     }
-    .footer--loginon {
+    .footer--login {
         padding-bottom: var(--spacing-sm);
     }
  }
@@ -292,25 +295,28 @@ a[title="Minha conta"]:hover{
     #ADD-BUTTON
 \*---------------------------------------------*/
 .add {
-    color: white;
-    text-decoration: none;
+	display: none;
     position: fixed;
     bottom: 3rem; right: 3rem;
-    display: flex;
 }
-.add span {
+.add__title{
+	display: flex;
     position: absolute;
     top: 0; right: calc(100% - 6rem);
-    display: flex;
     align-items: center;
+    z-index: -1;
+     
+    height: 74.43px;
     background-color: var(--cta);
-    height: 4.65rem;
-    font-size: 1rem;
-    font-weight: bold;
+    opacity: 0;
     border-radius: 2.25rem 2.25rem;
     padding: 0 2rem;
-    z-index: -1;
-    opacity: 0;
+    
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+        
     pointer-events: none;
     transition: all .5s ease;
     transform: rotateY(60deg);
@@ -320,20 +326,19 @@ a[title="Minha conta"]:hover{
     border-radius: 50%;
     padding: 1.5rem;
     box-shadow: var(--shadow-default);
-    transition: all .5s ease;
+    transition: box-shadow .5s ease;
 }
-.add__circle img {
+.add__plus {
     height: 1.5rem;
     width: 1.5rem;
 }
 .add:hover {
-    color: white;
     filter: drop-shadow(var(--shadow-default-hover));
 }
 .add:hover .add__circle {
     box-shadow: none;
 }
-.add:hover span {
+.add:hover .add__title {
     opacity: 1;
     pointer-events: all;
     right: calc(100% - 2rem);
@@ -487,20 +492,29 @@ input {
     display: flex;
     row-gap: 1.5rem;
     flex-direction: column;
+    text-align: left;
 }
 .form__input-group {
 	display: flex;
     width: 100%;
-    position: relative;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
-.form__input {
+.form__input-field {
+    display: flex;
 	position: relative;
     flex: 1 1 auto;
+}
+.form__input-field--grow0 {
+    flex-grow: 0;
+}
+.form__input {
     padding: .375rem .75rem;
     background-color: #fff;
     border: 1px solid #aeb8c1;
     border-radius: 5px;
     outline: 0;
+    width: 100%;
 }
 .form__input:focus {
 	border-color: rgba(18,220,139,0.3);
@@ -522,7 +536,7 @@ input {
 
 .form__input--select {
 	cursor: pointer;
-    flex-grow: 0;
+    height: 100%;
 }
 .form__label--select {
     transform: translateY(-50%);
@@ -540,10 +554,11 @@ input {
     padding: .75rem;
     width: min-content;
     border: 1px solid var(--cta);
-    font-weight: bold;
+   
     transition: all .2s ease-in-out;
 }
 .form__btn:hover {
+	 font-weight: 600;
     background-color: var(--cta);
     color: #fff;
 }
@@ -625,18 +640,31 @@ input {
 /*---------------------------------------------*\
     #adicionar
 \*---------------------------------------------*/
+.adicionar__buttons {
+	row-gap: .75rem;
+}
+
 .adicionar__btn{
 	display: block;
 	background: #FFFFFF;
-	border: 1px solid #12DC8B;
-	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+	padding: .5rem;
 	border-radius: 50rem;
+	border: 1px solid #12DC8B;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+	
+	text-align: center;
 	color: var(--cta);
 	font-weight: bold;
-	padding: 1rem 2rem;
+	cursor: pointer;
+}
+
+.adicionar__btn:hover {
+    background-color: var(--cta);
+    color: #fff;
 }
 
 .adicionar__btn--selected{
 	color: #fff;
 	background:  var(--cta);
+	pointer-events: none;
 }

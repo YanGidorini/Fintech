@@ -12,6 +12,9 @@
 	<jsp:include page="./parts/header.jsp"/>
 	
 	
+	
+	
+	<jsp:include page="./parts/addBtn.jsp"/>
 	<jsp:include page="./parts/footer.jsp"/>
 	<jsp:include page="./parts/mobileMenu.jsp"/>
 </body>

@@ -1,6 +1,6 @@
-<a href="./adicionar.html" class="add d-none d-sm-block">
-    <div class="add_circle">
-        <img src="./icons/mais.png">
+<a href="adicionar/receita" class="add d-sm-block">
+    <div class="add__circle">
+        <img class="add__plus" src="${pageContext.request.contextPath}/resources/icons/mais.png">
     </div>
-    <span>Adicionar</span>
+    <span class="add__title">Adicionar</span>
 </a>
