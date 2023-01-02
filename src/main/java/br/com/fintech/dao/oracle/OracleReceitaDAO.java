@@ -260,7 +260,10 @@ public class OracleReceitaDAO implements DefaultDAO {
 				Double vl = result.getDouble("VL_RECEITA");
 				String dtExtenso = result.getString("DT_EXTENSO");
 				String hr = result.getString("hr_receita");
-								
+				if (hr.equals("00:00")) {
+					hr = "";
+				}
+
 				Receita receita = new Receita(idReceita, nm, vl, dtExtenso, hr, user);
 				
 				receitaList.add(receita);
