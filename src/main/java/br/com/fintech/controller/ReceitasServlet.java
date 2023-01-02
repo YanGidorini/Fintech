@@ -50,7 +50,6 @@ public class ReceitasServlet extends HttpServlet {
 		List<ReceitaMes> listReceitaMes = new ArrayList<>();	
 		List<String> years = dao.selectYears(user);
 		Map<String, String> meses = dao.getMeses();
-		//List<String> meses = dao.getMonths();
 		
 		for(String year : years) {
 			for (String mes : meses.keySet()) {
@@ -64,7 +63,6 @@ public class ReceitasServlet extends HttpServlet {
 			}
 		}
 		
-		request.setAttribute("dao", dao);
 		request.setAttribute("listReceitaMes", listReceitaMes);
 		request.setAttribute("years", years);
 	}

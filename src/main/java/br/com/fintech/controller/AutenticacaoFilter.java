@@ -23,14 +23,13 @@ public class AutenticacaoFilter extends HttpFilter implements Filter {
 		String uri = req.getRequestURI();
 		
 		String servletPath = req.getServletPath();
-		System.out.println("ServletPath:  " + servletPath);
-		System.out.println("contextPath:  " + req.getContextPath());
-		System.out.println("sessionID :  " + session.getId());
-		System.out.println("User  " + session.getAttribute("user"));				
+		//System.out.println("ServletPath:  " + servletPath);
+		//System.out.println("contextPath:  " + req.getContextPath());
+		//System.out.println("sessionID :  " + session.getId());
+		//System.out.println("User  " + session.getAttribute("user"));				
 		
 		if(session.getAttribute("user") == null && !servletPath.equals("/login.jsp") && !uri.contains("resources")){					
 			String task = req.getParameter("task");
-			System.out.println("task:  " + task);
 					
 			if (task != null && task.equals("login") ^ task.equals("cadastrar")) {
 				chain.doFilter(req, resp);
