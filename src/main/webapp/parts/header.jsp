@@ -12,7 +12,7 @@
                 <a href="./dashboard.html" title="Ir para a Dashboard">
                     <svg class="header__item home" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
                 </a>
-                <a href="./receitas.html" title="Minhas receitas">
+                <a href="${pageContext.request.contextPath}/receitas" title="Minhas receitas">
                     <svg class="header__item revenue" width="37" height="26" viewBox="0 0 37 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_767_380)">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M35.2248 9.5188L36.4747 0.9729L28.1687 3.34048L30.546 5.42206L20.0487 17.2223L13.6017 10.7753L1.51352 22.8796L3.93115 25.2972L13.6017 15.6106L20.0487 22.0576L32.9602 7.53591L35.2248 9.5188Z" />

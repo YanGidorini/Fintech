@@ -36,8 +36,6 @@ public class AddReceitaServlet extends HttpServlet {
 			String date = request.getParameter("date");
 			String time = request.getParameter("time");
 			
-			System.out.println(valor);
-			
 			if (!time.equals("")) {
 				date = date + " " + time;
 			}

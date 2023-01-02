@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.com.fintech.dao.DefaultDAO;
 import br.com.fintech.database.DBConnectionManager;
@@ -15,7 +18,26 @@ import br.com.fintech.model.Receita;
 import br.com.fintech.model.Usuario;
 
 public class OracleReceitaDAO implements DefaultDAO {
-private Connection conn = null;
+	private Connection conn = null;
+	
+	private final Map<String, String> meses = new LinkedHashMap<>() {{
+	    put("12", "DEZEMBRO");
+	    put("11", "NOVEMBRO");
+	    put("10", "OUTUBRO");
+	    put("09", "SETEMBRO");
+	    put("08", "AGOSTO");
+	    put("07", "JULHO");
+	    put("06", "JUNHO");
+	    put("05", "MAIO");
+	    put("04", "ABRIL");
+	    put("03", "MARÇO");
+	    put("02", "FEVEREIRO");
+	    put("01", "JANEIRO");
+	}};
+
+	public Map<String, String> getMeses() {
+		return meses;
+	}
 	
 	@Override
 	public void insert(Object obj) {
@@ -209,7 +231,7 @@ private Connection conn = null;
 	 * @param ano O ano das despesas
 	 * @return Lista das despesas de um usuario especifico
 	 */
-	public List<Receita> selectAllByUserByMonthByYear(int idUser, String mes, String ano) {
+	public List<Receita> selectAllByUserByMonthByYear(Usuario user, String mes, String ano) {
 		List<Receita> receitaList = new ArrayList<Receita>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -226,7 +248,7 @@ private Connection conn = null;
 						+ "WHERE cd_usuario = ? AND TO_CHAR(dt_receita, 'MM') = ? AND TO_CHAR(dt_receita, 'YYYY') = ? "
 						+ "ORDER BY dt_receita DESC";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 			stmt.setString(2, mes);
 			stmt.setString(3, ano);
 			
@@ -238,10 +260,7 @@ private Connection conn = null;
 				Double vl = result.getDouble("VL_RECEITA");
 				String dtExtenso = result.getString("DT_EXTENSO");
 				String hr = result.getString("hr_receita");
-				
-				OracleUsuarioDAO userDao = (OracleUsuarioDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getUsuarioDAO();
-				Usuario user = userDao.selectById(idUser);
-				
+								
 				Receita receita = new Receita(idReceita, nm, vl, dtExtenso, hr, user);
 				
 				receitaList.add(receita);
@@ -269,7 +288,7 @@ private Connection conn = null;
 	 * @param mes O mes em questão
 	 * @return A soma
 	 */
-	public Double sumReceitasByUserByMonthByYear(int idUser, String mes, String ano) {
+	public Double sumReceitas(Usuario user, String mes, String ano) {
 		Double sum = 0.0;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -279,7 +298,7 @@ private Connection conn = null;
 			
 			String sql = "SELECT SUM(vl_receita) as sum_receita FROM t_receita WHERE cd_usuario = ? AND TO_CHAR(dt_receita, 'MM') = ? AND TO_CHAR(dt_receita, 'YYYY') = ? ";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 			stmt.setString(2, mes);
 			stmt.setString(3, ano);
 			
@@ -305,4 +324,43 @@ private Connection conn = null;
 		return sum;	
 	};
 	
+	
+	public List<String> selectYears(Usuario user) {
+		List<String> years = new ArrayList<String>();
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			conn = DBConnectionManager.getInstance().getConn();
+			
+			String sql = "SELECT DISTINCT TO_CHAR(dt_receita, 'YYYY') as ano FROM t_receita WHERE cd_usuario = ? ORDER BY ano DESC";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, user.getIdUsuario());
+			
+			result = stmt.executeQuery();
+	
+			while(result.next()) {
+				String year = result.getString("ano");
+				years.add(year);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+		return years;	
+	}
+	
+	
+
+
 }
