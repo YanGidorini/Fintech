@@ -13,7 +13,7 @@
 		<div class="row justify-content-center">
 	    	<div class="col-lg-9 col-xxl-8">
 	    		
-		    	<p class="title">Adicionar</p>
+		    	<div class="mb-5"><span class="title title--decorated">Adicionar</span></div> 
 		    	
 		    	<div class="adicionar__buttons row justify-content-center align-items-center mb-5">
 		    		<div class="col-6 col-md-3">
