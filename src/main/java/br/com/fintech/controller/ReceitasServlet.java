@@ -31,39 +31,59 @@ public class ReceitasServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			listarReceitas(request);
-		} catch (Exception e) {
-			request.setAttribute("msg", "Não foi possível carregar suas receitas");
-		}
-		request.getRequestDispatcher("receitas.jsp").forward(request, response);
+		listarReceitas(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String task = request.getParameter("task");
 		
+		switch(task) {
+			case "excluir":
+				this.excluir(request, response);
+			break;
+		}
 	}
 	
-	
-	private void listarReceitas(HttpServletRequest request) {
-		Usuario user = (Usuario) request.getSession().getAttribute("user");
-		List<Receita> receitas = new ArrayList<Receita>();	
-		List<ReceitaMes> listReceitaMes = new ArrayList<>();	
-		List<String> years = dao.selectYears(user);
-		Map<String, String> meses = dao.getMeses();
-		
-		for(String year : years) {
-			for (String mes : meses.keySet()) {
-				receitas = dao.selectAllByUserByMonthByYear(user, mes, year);
-				
-				if (!receitas.isEmpty()) { 
-					String nomeMes = meses.get(mes);
-					Double total = dao.sumReceitas(user, mes, year);
-					listReceitaMes.add(new ReceitaMes(year, nomeMes, receitas, total));
+	private void excluir(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			int id = Integer.valueOf(request.getParameter("id"));
+			dao.delete(id);
+			
+			request.setAttribute("deleteMsg", "Receita excluída");
+			listarReceitas(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	private void listarReceitas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			List<Receita> receitas = new ArrayList<Receita>();	
+			List<ReceitaMes> listReceitaMes = new ArrayList<>();	
+			List<String> years = dao.selectYears(user);
+			Map<String, String> meses = dao.getMeses();
+			
+			for(String year : years) {
+				for (String mes : meses.keySet()) {
+					receitas = dao.selectAllByUserByMonthByYear(user, mes, year);
+					
+					if (!receitas.isEmpty()) { 
+						String nomeMes = meses.get(mes);
+						Double total = dao.sumReceitas(user, mes, year);
+						listReceitaMes.add(new ReceitaMes(year, nomeMes, receitas, total));
+					}
 				}
 			}
-		}
+			
+			request.setAttribute("listReceitaMes", listReceitaMes);
+			request.setAttribute("years", years);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("erro", "Não foi possível carregar suas receitas");
+		} 
 		
-		request.setAttribute("listReceitaMes", listReceitaMes);
-		request.setAttribute("years", years);
+		request.getRequestDispatcher("receitas.jsp").forward(request, response);
+
 	}
 }

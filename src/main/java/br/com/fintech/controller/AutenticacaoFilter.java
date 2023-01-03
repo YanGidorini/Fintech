@@ -26,6 +26,7 @@ public class AutenticacaoFilter extends HttpFilter implements Filter {
 		//System.out.println("ServletPath:  " + servletPath);
 		//System.out.println("contextPath:  " + req.getContextPath());
 		//System.out.println("sessionID :  " + session.getId());
+		//System.out.println("uri :  " + uri);
 		//System.out.println("User  " + session.getAttribute("user"));				
 		
 		if(session.getAttribute("user") == null && !servletPath.equals("/login.jsp") && !uri.contains("resources")){					

@@ -22,7 +22,15 @@
             		<span class="title title--decorated">Receitas</span>
             	</div> 
             	
+            	<c:if test="${not empty deleteMsg}">
+        			<script>window.alert("${deleteMsg}")</script>
+      			</c:if>
+	
             	<c:choose>
+            		<c:when test="${not empty erro}">
+            			<h1 class="title text-center">${erro}</h1>
+            		</c:when>
+            		
             		<c:when test="${not empty listReceitaMes}">
 		            	<c:forEach items="${years}" var="year">      	
 			            	<div class="d-flex justify-content-center mb-3">
@@ -54,7 +62,7 @@
 															</svg>
 						                                </button>
 						                                
-						                                <button class="button" type="button" title="Excluir despesa" data-bs-toggle="modal" data-bs-target="#deleteModal_receita">
+						                                <button class="button" type="button" title="Excluir despesa" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="exclusion.value = ${receita.idReceita}">
 						                                    <svg viewBox="0 0 24 24">
 															    <path  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
 															</svg>
@@ -78,9 +86,13 @@
 			</div>
 		</div>
 	</main>
-	
+	<jsp:include page="./parts/deleteModal.jsp"/>
 	<jsp:include page="./parts/addBtn.jsp"/>
 	<jsp:include page="./parts/footer.jsp"/>
 	<jsp:include page="./parts/mobileMenu.jsp"/>
+	<script type="text/javascript">
+		document.querySelector("#deleteModalLabel").textContent = 'Excluir Receita';
+		document.querySelector("#confirm-deletion").setAttribute('action','receitas');
+	</script>
 </body>
 </html>
