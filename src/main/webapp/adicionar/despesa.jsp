@@ -52,6 +52,7 @@
 			                        <div class="form__input-field form__input-field--grow0">
 			                            <label for="categoria" class="form__label form__label--select">Categoria<span class="form__mandatory">*</span></label>
 			                            <select class="form__input form__input--select" id="categoria" name="categoria" required>
+			                            	<option value="" selected disabled>Selecione</option>
 			                                <c:forEach var="i" items="${categorias}">
 			                                	<option value="${i.idCategoria}">${i.nmCategoria}</option>
 			                                </c:forEach>

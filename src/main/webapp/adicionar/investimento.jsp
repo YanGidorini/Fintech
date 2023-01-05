@@ -70,6 +70,7 @@
 				                        <div class="form__input-field form__input-field--grow0">
 				                            <label for="corretora" class="form__label form__label--select">Corretora/Banco<span class="form__mandatory">*</span></label>
 				                            <select class="form__input form__input--select" id="corretora" name="corretora" required>
+				                           			<option value="" selected disabled>Selecione</option>
 				                                <c:forEach var="i" items="${corretoras}">
 				                                	<option value="${i.idCorretora}">${i.nmCorretora}</option>
 				                                </c:forEach>
@@ -79,6 +80,7 @@
 										<div class="form__input-field form__input-field--grow0">
 				                            <label for="tipo" class="form__label form__label--select">Tipo aplicação<span class="form__mandatory">*</span></label>
 				                            <select class="form__input form__input--select" id="tipo" name="tipo" required>
+				                            		<option value="" selected disabled>Selecione</option>
 				                                <c:forEach var="i" items="${tipos}">
 				                                	<option value="${i.idTipo}">${i.nmTipo}</option>
 				                                </c:forEach>
