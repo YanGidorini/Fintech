@@ -242,6 +242,7 @@ public class OracleReceitaDAO implements DefaultDAO {
 			String sql = "SELECT cd_receita, "
 							  + "nm_receita, "
 							  + "vl_receita, "
+							  + "TO_CHAR(dt_receita, 'YYYY-MM-DD') as dt_receita, "
 							  + "TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(TO_CHAR(dt_receita, 'Dy, DD \"de\" Month', 'NLS_DATE_LANGUAGE=PORTUGUESE'), 'Dom', 'Domingo'), 'Seg','Segunda-feira'), 'Ter','Terça-feira'), 'Qua','Quarta-feira'), 'Qui','Quinta-feira'), 'Sex','Sexta-feira'), 'Sáb','Sábado')) as dt_extenso, "
 							  + "TO_CHAR(dt_receita, 'HH24:MI') as hr_receita "
 						+ "FROM t_receita "
@@ -258,6 +259,7 @@ public class OracleReceitaDAO implements DefaultDAO {
 				int idReceita = result.getInt("CD_RECEITA");
 				String nm = result.getString("NM_RECEITA");
 				Double vl = result.getDouble("VL_RECEITA");
+				String dtReceita = result.getString("dt_receita");
 				String dtExtenso = result.getString("DT_EXTENSO");
 				String hr = result.getString("hr_receita");
 				if (hr.equals("00:00")) {
@@ -265,6 +267,7 @@ public class OracleReceitaDAO implements DefaultDAO {
 				}
 
 				Receita receita = new Receita(idReceita, nm, vl, dtExtenso, hr, user);
+				receita.setDtReceita(dtReceita);
 				
 				receitaList.add(receita);
 			}

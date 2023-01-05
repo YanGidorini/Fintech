@@ -11,8 +11,8 @@
                 </div>
 
                 <div class="modal-footer">
-                	<form action="" method="POST" id="confirm-deletion">
-                		<input type="hidden" name="id" value="" id="exclusion">
+                	<form id="confirm-deletion" action="" method="POST">
+                		<input type="hidden" name="idReceita" value="" id="exclusion">
                 		<input type="hidden" name="task" value="excluir">
                     	<button type="submit" class="form__btn" style="width: auto;">Confirmar exclusão</button>
                     </form>	

@@ -31,6 +31,7 @@ public class ReceitasServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("dao", dao);
 		listarReceitas(request, response);
 	}
 	
@@ -41,21 +42,50 @@ public class ReceitasServlet extends HttpServlet {
 			case "excluir":
 				this.excluir(request, response);
 			break;
+			
+			case "editar":
+				this.editar(request, response);
+			break;
 		}
 	}
 	
 	private void excluir(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			int id = Integer.valueOf(request.getParameter("id"));
+			int id = Integer.valueOf(request.getParameter("idReceita"));
 			dao.delete(id);
 			
-			request.setAttribute("deleteMsg", "Receita excluída");
+			request.setAttribute("msg", "Receita excluída");
 			listarReceitas(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
 	}
+	
+	private void editar(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			String nome = request.getParameter("name");
+			Double valor = Double.valueOf( request.getParameter("valor").replace("R$", "").replace(".", "").replace(",", "."));		
+			String date = request.getParameter("date");
+			String time = request.getParameter("time");
+			int id = Integer.valueOf(request.getParameter("idReceita"));
+			
+			if (!time.equals("")) {
+				date = date + " " + time;
+			}
+			
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			Receita receita = new Receita(id, nome, valor, date, user);
+			dao.update(receita);
+			
+			request.setAttribute("msg", "Receita atualizada");
+			listarReceitas(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
 	private void listarReceitas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Usuario user = (Usuario) request.getSession().getAttribute("user");

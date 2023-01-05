@@ -22,8 +22,8 @@
             		<span class="title title--decorated">Receitas</span>
             	</div> 
             	
-            	<c:if test="${not empty deleteMsg}">
-        			<script>window.alert("${deleteMsg}")</script>
+            	<c:if test="${not empty msg}">
+        			<script>window.alert("${msg}")</script>
       			</c:if>
 	
             	<c:choose>
@@ -56,7 +56,7 @@
 						                            </div>
 						        
 						                            <div class="col-auto d-flex mt-3 mt-sm-0">
-						                                <button class="button me-2 me-sm-3" type="button" title="Editar despesa">
+						                                <button class="button me-2 me-sm-3" type="button" title="Editar despesa" data-bs-toggle="modal" data-bs-target="#editModal" onclick="edition.value = '${receita.idReceita}'; nome.value = '${receita.nome}'; valor.value = '${receita.valor}'; data.value = '${receita.dtReceita}' ; time.value = '${receita.hora}' ">
 															<svg viewBox="0 0 24 24">
 															    <path  d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
 															</svg>
@@ -86,13 +86,16 @@
 			</div>
 		</div>
 	</main>
+	<jsp:include page="./parts/editModalReceita.jsp"/>
 	<jsp:include page="./parts/deleteModal.jsp"/>
 	<jsp:include page="./parts/addBtn.jsp"/>
 	<jsp:include page="./parts/footer.jsp"/>
 	<jsp:include page="./parts/mobileMenu.jsp"/>
 	<script type="text/javascript">
+		document.querySelector("#editModalLabel").textContent = 'Editar Receita';
 		document.querySelector("#deleteModalLabel").textContent = 'Excluir Receita';
-		document.querySelector("#confirm-deletion").setAttribute('action','receitas');
+		document.querySelector("form#confirm-deletion").setAttribute('action','receitas');
 	</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/currencyMask.js"></script>
 </body>
 </html>
