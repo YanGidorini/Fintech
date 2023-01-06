@@ -2,7 +2,7 @@ package br.com.fintech.model;
 
 public class Despesa extends AtividadeFinanceira {
 	private int idDespesa;
-	private String dtHrDespesa;
+	private String dtDespesa;
 	private String dtExtenso;
 	private String hora;
 	private Categoria categoria; //relacionamento
@@ -13,20 +13,20 @@ public class Despesa extends AtividadeFinanceira {
 	}
 	
 	//usado para insert
-	public Despesa(String nome, Double valor, String dtHrDespesa, Categoria categoria, Usuario usuario) {
+	public Despesa(String nome, Double valor, String dtDespesa, Categoria categoria, Usuario usuario) {
 		this.setNome(nome);
 		this.setValor(valor);
-		this.setDtHrDespesa(dtHrDespesa);
+		this.setDtDespesa(dtDespesa);
 		this.setCategoria(categoria);
 		this.setUsuario(usuario);
 	}
 	
 	//usado para selectById
-	public Despesa(int id, String nome, Double valor, String dtHrDespesa, Categoria categoria, Usuario usuario) {
+	public Despesa(int id, String nome, Double valor, String dtDespesa, Categoria categoria, Usuario usuario) {
 		this.setIdDespesa(id);
 		this.setNome(nome);
 		this.setValor(valor);
-		this.setDtHrDespesa(dtHrDespesa);
+		this.setDtDespesa(dtDespesa);
 		this.setCategoria(categoria);
 		this.setUsuario(usuario);
 	}
@@ -45,17 +45,17 @@ public class Despesa extends AtividadeFinanceira {
 	
 	@Override
 	public String toString() {
-		return "Despesa [idDespesa=" + idDespesa + ", nm=" + this.getNome() + ", valor=" + this.getValor() + ", dtHrDespesa=" + dtHrDespesa + ", dtExtenso=" + dtExtenso
+		return "Despesa [idDespesa=" + idDespesa + ", nm=" + this.getNome() + ", valor=" + this.getValor() + ", dtHrDespesa=" + dtDespesa + ", dtExtenso=" + dtExtenso
 				+ ", hora=" + hora + ", categoria=" + categoria + ", usuario=" + usuario + "]";
 	}
 
 	/*Getters and setters*/
-	public String getDtHrDespesa() {
-		return dtHrDespesa;
+	public String getDtDespesa() {
+		return dtDespesa;
 	}
 
-	public void setDtHrDespesa(String dtHrDespesa) {
-		this.dtHrDespesa = dtHrDespesa;
+	public void setDtDespesa(String dtDespesa) {
+		this.dtDespesa = dtDespesa;
 	}
 
 	public int getIdDespesa() {

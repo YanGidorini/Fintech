@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.com.fintech.dao.DefaultDAO;
 import br.com.fintech.database.DBConnectionManager;
@@ -16,7 +18,25 @@ import br.com.fintech.model.Usuario;
 
 public class OracleDespesaDAO implements DefaultDAO {
 	private Connection conn = null;
-	
+	private final Map<String, String> meses = new LinkedHashMap<>() {{
+	    put("12", "DEZEMBRO");
+	    put("11", "NOVEMBRO");
+	    put("10", "OUTUBRO");
+	    put("09", "SETEMBRO");
+	    put("08", "AGOSTO");
+	    put("07", "JULHO");
+	    put("06", "JUNHO");
+	    put("05", "MAIO");
+	    put("04", "ABRIL");
+	    put("03", "MARÇO");
+	    put("02", "FEVEREIRO");
+	    put("01", "JANEIRO");
+	}};
+
+	public Map<String, String> getMeses() {
+		return meses;
+	}
+
 	@Override
 	public void insert(Object obj) {
 		Despesa despesa = (Despesa) obj;
@@ -31,7 +51,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, despesa.getNome());
 			stmt.setDouble(2, despesa.getValor());
-			stmt.setString(3, despesa.getDtHrDespesa());
+			stmt.setString(3, despesa.getDtDespesa());
 			stmt.setInt(4, despesa.getCategoria().getIdCategoria());
 			stmt.setInt(5, despesa.getUsuario().getIdUsuario());
 			
@@ -69,7 +89,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, despesa.getNome());
 			stmt.setDouble(2, despesa.getValor());
-			stmt.setString(3, despesa.getDtHrDespesa());
+			stmt.setString(3, despesa.getDtDespesa());
 			stmt.setInt(4, despesa.getCategoria().getIdCategoria());
 			stmt.setInt(5, despesa.getUsuario().getIdUsuario());
 			stmt.setInt(6, despesa.getIdDespesa());
@@ -222,7 +242,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 	 * @param ano O ano das despesas
 	 * @return Lista das despesas de um usuario especifico
 	 */
-	public List<Despesa> selectAllByUserByMonthByYear(int idUser, String mes, String ano) {
+	public List<Despesa> selectAllByUserByMonthByYear(Usuario user, String mes, String ano) {
 		List<Despesa> despesaList = new ArrayList<Despesa>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -233,6 +253,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 			String sql = "SELECT cd_despesa, "
 							  + "nm_despesa, "
 							  + "vl_despesa, "
+							  + "TO_CHAR(dt_hr_despesa, 'YYYY-MM-DD') as dt_despesa, "
 							  + "TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(TO_CHAR(dt_hr_despesa, 'Dy, DD \"de\" Month', 'NLS_DATE_LANGUAGE=PORTUGUESE'), 'Dom', 'Domingo'), 'Seg','Segunda-feira'), 'Ter','Terça-feira'), 'Qua','Quarta-feira'), 'Qui','Quinta-feira'), 'Sex','Sexta-feira'), 'Sáb','Sábado')) as dt_extenso, "
 							  + "TO_CHAR(dt_hr_despesa, 'HH24:MI') as hr_despesa, "
 							  + "cd_categoria "
@@ -240,7 +261,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 						+ "WHERE cd_usuario = ? AND TO_CHAR(dt_hr_despesa, 'MM') = ? AND TO_CHAR(dt_hr_despesa, 'YYYY') = ? "
 						+ "ORDER BY dt_hr_despesa DESC";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 			stmt.setString(2, mes);
 			stmt.setString(3, ano);
 			
@@ -250,17 +271,20 @@ public class OracleDespesaDAO implements DefaultDAO {
 				int idDespesa = result.getInt("CD_DESPESA");
 				String nm = result.getString("NM_DESPESA");
 				Double vl = result.getDouble("VL_DESPESA");
+				String dtDespesa = result.getString("dt_despesa");
 				String dtExtenso = result.getString("DT_EXTENSO");
 				String hr = result.getString("hr_despesa");
 				int idCategoria = result.getInt("CD_CATEGORIA");
+				if (hr.equals("00:00")) {
+					hr = "";
+				}
+				
 				
 				OracleCategoriaDAO categoriaDao = (OracleCategoriaDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getCategoriaDAO();
 				Categoria categoria = categoriaDao.selectById(idCategoria);
 				
-				OracleUsuarioDAO userDao = (OracleUsuarioDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getUsuarioDAO();
-				Usuario user = userDao.selectById(idUser);
-				
 				Despesa despesa = new Despesa(idDespesa, nm, vl, dtExtenso, hr, categoria, user);
+				despesa.setDtDespesa(dtDespesa);
 				
 				despesaList.add(despesa);
 			}
@@ -325,7 +349,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 	 * @param mes O mes em questão
 	 * @return A soma
 	 */
-	public Double sumDespesasByUserByMonthByYear(int idUser, String mes, String ano) {
+	public Double sumDespesas(Usuario user, String mes, String ano) {
 		Double sum = 0.0;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -335,7 +359,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 			
 			String sql = "SELECT SUM(vl_despesa) as sum_despesa FROM t_despesa WHERE cd_usuario = ? AND TO_CHAR(dt_hr_despesa, 'MM') = ? AND TO_CHAR(dt_hr_despesa, 'YYYY') = ? ";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 			stmt.setString(2, mes);
 			stmt.setString(3, ano);
 			
@@ -359,9 +383,43 @@ public class OracleDespesaDAO implements DefaultDAO {
 		}
 		
 		return sum;
-		
-		
-	};
+	}
 	
+	public List<String> selectYears(Usuario user) {
+		List<String> years = new ArrayList<String>();
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			conn = DBConnectionManager.getInstance().getConn();
+			
+			String sql = "SELECT DISTINCT TO_CHAR(dt_hr_despesa, 'YYYY') as ano FROM t_despesa WHERE cd_usuario = ? ORDER BY ano DESC";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, user.getIdUsuario());
+			
+			result = stmt.executeQuery();
+	
+			while(result.next()) {
+				String year = result.getString("ano");
+				years.add(year);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+		return years;	
+	}
+
+
 	
 }

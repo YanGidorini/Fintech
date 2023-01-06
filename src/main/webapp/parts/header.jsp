@@ -24,7 +24,7 @@
                     </defs>
                     </svg>
                 </a>
-                <a href="./despesas.html" title="Minhas despesas">
+                <a href="${pageContext.request.contextPath}/despesas" title="Minhas despesas">
                     <svg class="header__item spent" width="37" height="26" viewBox="0 0 37 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_767_376)">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M34.279 16.7516L35.5288 25.2975L27.2229 22.9299L29.6002 20.8483L19.1027 9.04795L12.6557 15.495L0.567596 3.3907L2.98522 0.973076L12.6557 10.6597L19.1027 4.2127L32.0144 18.7345L34.279 16.7516Z" />

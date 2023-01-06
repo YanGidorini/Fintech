@@ -31,24 +31,22 @@ public class AddDespesaServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("categorias", categoriaDao.selectAll());
-		
 		try {
-			String nome = request.getParameter("name");
-			Double valor = Double.valueOf( request.getParameter("valor").replace("R$", "").replace(".", "").replace(",", "."));		
-			String date = request.getParameter("date");
-			String time = request.getParameter("time");
-			Categoria categoria = categoriaDao.selectById( Integer.valueOf(request.getParameter("categoria")) );
+				String nome = request.getParameter("name");
+				Double valor = Double.valueOf( request.getParameter("valor").replace("R$", "").replace(".", "").replace(",", "."));		
+				String date = request.getParameter("date");
+				String time = request.getParameter("time");
+				Categoria categoria = categoriaDao.selectById( Integer.valueOf(request.getParameter("categoria")) );
+				
+				if (!time.equals("")) {
+					date = date + " " + time;
+				}
+				Usuario user = (Usuario) request.getSession().getAttribute("user");
+				
+				Despesa despesa = new Despesa(nome, valor, date, categoria, user);
+				dao.insert(despesa);
 			
-			if (!time.equals("")) {
-				date = date + " " + time;
-			}
-			Usuario user = (Usuario) request.getSession().getAttribute("user");
-			
-			Despesa despesa = new Despesa(nome, valor, date, categoria, user);
-			dao.insert(despesa);
-			
-			request.setAttribute("msg", "Despesa adicionada!");
+				request.setAttribute("msg", "Despesa adicionada!");
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			request.setAttribute("erro", "Não foi possível adicionar a despesa");
@@ -56,6 +54,8 @@ public class AddDespesaServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("erro", "Não foi possível adicionar a despesa");
 		}
+		
+		request.setAttribute("categorias", categoriaDao.selectAll());
 		request.getRequestDispatcher("despesa.jsp").forward(request, response);	
 		
 	}

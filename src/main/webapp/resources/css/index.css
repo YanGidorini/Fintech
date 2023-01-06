@@ -420,12 +420,7 @@ progress::-webkit-progress-value {
     #DESPESAS
 \*---------------------------------------------*/
 
-.categoria_tag-inline {
-    width: .75rem;
-    height: 100%;
-    top: 0; left: 0;
-}
-.categoria_tag {
+.categoria__tag {
     height: 1rem;
     width: 3rem;
     border-radius: 50rem;
@@ -434,46 +429,52 @@ progress::-webkit-progress-value {
     display: inline-block;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
 }
-    .categoria_tag--aluguel {
+.categoria__tag--inline {
+	position: absolute;
+    width: .75rem;
+    height: 100%;
+    top: 0; left: 0;
+}
+    .categoria__tag--aluguel {
         background-color: var(--categoria-color-aluguel);
     }
-    .categoria_tag--alimentacao {
+    .categoria__tag--alimentacao {
         background-color: var(--categoria-color-alimentacao);
     }
-    .categoria_tag--lazer {
+    .categoria__tag--lazer {
         background-color: var(--categoria-color-lazer);
     }
-    .categoria_tag--educacao {
+    .categoria__tag--educacao {
         background-color: var(--categoria-color-educacao);
     }
-    .categoria_tag--transporte {
+    .categoria__tag--transporte {
         background-color: var(--categoria-color-transporte);
     }
-    .categoria_tag--casa {
+    .categoria__tag--casa {
         background-color: var(--categoria-color-casa);
     }
-    .categoria_tag--saude {
+    .categoria__tag--saude {
         background-color: var(--categoria-color-saude);
     }
-    .categoria_tag--cdb {
+    .categoria__tag--cdb {
         background-color: #02743d;
     }
-    .categoria_tag--lci {
+    .categoria__tag--lci {
         background-color: #7c6a0a;
     }
-    .categoria_tag--tesouro {
+    .categoria__tag--tesouro {
         background-color: #aa7dce;
     }
-    .categoria_tag--poupanca {
+    .categoria__tag--poupanca {
         background-color: #3b429f;
     }
-    .categoria_tag--fii {
+    .categoria___tag--fii {
         background-color: #46acc2;
     }
-    .categoria_tag--fundos {
+    .categoria__tag--fundos {
         background-color: #3d3101;
     }
-    .categoria_tag--acoes {
+    .categoria__tag--acoes {
         background-color: #29bf12;
     }
 
