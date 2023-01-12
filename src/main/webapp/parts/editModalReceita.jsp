@@ -31,7 +31,7 @@
 							<input class="form__input cursor-pointer" id="time" type="time" name="time">
 						</div>   
                     </div>
-                   	<button class="form__btn" type="submit">Adicionar</button>
+                   	<button class="form__btn" type="submit">Salvar</button>
                </form>
             </div>
         </div>
