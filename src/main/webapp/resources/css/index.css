@@ -130,6 +130,10 @@ a {
     background-color: white;
     border-radius: 5px;
 }
+.button--min-height {
+	height: fit-content;
+}
+
 .button > svg {
     height: calc(1.5rem + .3vw);
     width: calc(1.5rem + .5vw);
@@ -468,7 +472,7 @@ progress::-webkit-progress-value {
     .categoria__tag--poupanca {
         background-color: #3b429f;
     }
-    .categoria___tag--fii {
+    .categoria__tag--fiis {
         background-color: #46acc2;
     }
     .categoria__tag--fundos {
@@ -488,7 +492,7 @@ progress::-webkit-progress-value {
     font-size: calc(1.1rem + .1vw);
 }
 
-.investimentos_btn{
+.investimentos__btns{
     align-items: center;
     padding-top: 34px;
 }

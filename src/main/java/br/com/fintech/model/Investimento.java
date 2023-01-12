@@ -6,6 +6,8 @@ public class Investimento extends AtividadeFinanceira {
 	private int idInvestimento;
 	private String dtRealizacao;
 	private String dtVencimento;
+	private String dtRealizacaoToView;
+	private String dtVencimentoToView;
 	private Usuario usuario; //relacionamento
 	private Corretora corretora; //relacionamento
 	private TipoAplicacao tipo; //relacionamento
@@ -109,5 +111,21 @@ public class Investimento extends AtividadeFinanceira {
 
 	public void setTipo(TipoAplicacao tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getDtRealizacaoToView() {
+		return dtRealizacaoToView;
+	}
+
+	public void setDtRealizacaoToView(String dtRealizacaoToView) {
+		this.dtRealizacaoToView = dtRealizacaoToView;
+	}
+
+	public String getDtVencimentoToView() {
+		return dtVencimentoToView;
+	}
+
+	public void setDtVencimentoToView(String dtVencimentoToView) {
+		this.dtVencimentoToView = dtVencimentoToView;
 	}
 }

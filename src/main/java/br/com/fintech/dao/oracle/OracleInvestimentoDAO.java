@@ -255,7 +255,7 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 	 * @param idUsuario O código identificador do usuário
 	 * @return Lista com todos os investimentos de um usuario específico com as datas formatadas para visualização
 	 */
-	public List<Investimento> selectAllByUser(int idUser) {
+	public List<Investimento> selectAllByUser(Usuario user) {
 		PreparedStatement stmt = null;
 		List<Investimento> invList = new ArrayList<Investimento>();
 		ResultSet result = null;
@@ -265,12 +265,14 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 			
 			String sql = "SELECT cd_investimento, nm_aplicacao,"
 						+ "vl_aplicacao, "
-						+ "TO_CHAR(dt_realizacao, 'DD/MM/YYYY') as dt_realizacao, "
-						+ "'vence ' || TO_CHAR(dt_vencimento, 'DD/MM/YYYY') as dt_vencimento, "
+						+ "TO_CHAR(dt_realizacao, 'YYYY-MM-DD') as dt_realizacao, "
+						+ "TO_CHAR(dt_vencimento, 'YYYY-MM-DD') as dt_vencimento, "
+						+ "TO_CHAR(dt_realizacao, 'DD/MM/YYYY') as dt_realizacaoToView, "
+						+ "TO_CHAR(dt_vencimento, 'DD/MM/YYYY') as dt_vencimentoToView, "
 						+ "cd_usuario, cd_corretora, cd_tipo "
 						+ "FROM t_investimento WHERE cd_usuario = ? ORDER BY dt_realizacao ASC";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 			
 			result = stmt.executeQuery();
 			
@@ -280,6 +282,8 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 				Double valor = result.getDouble("VL_APLICACAO");
 				String dtRealizacao = result.getString("dt_realizacao");
 				String dtVencimento = result.getString("dt_vencimento");
+				String dtRealizacaoToView = result.getString("dt_realizacaoToView");
+				String dtVencimentoToView = result.getString("dt_vencimentoToView");
 				
 				//pegando o código dos relacionamentos
 				int idCorretora = result.getInt("CD_CORRETORA");
@@ -291,12 +295,11 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 				
 				OracleTipoAplicacaoDAO tipoDao = (OracleTipoAplicacaoDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getTipoAplicacaoDAO();
 				TipoAplicacao tipo = tipoDao.selectById(idTipo);
-				
-				OracleUsuarioDAO userDao = (OracleUsuarioDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getUsuarioDAO();
-				Usuario user = userDao.selectById(idUser);
-				
+
 				//Finalmente instanciando o objeto Investimento
 				Investimento inv = new Investimento(idInv, nmInv, valor, dtRealizacao, dtVencimento, corretora, tipo, user);
+				inv.setDtRealizacaoToView(dtRealizacaoToView);
+				inv.setDtVencimentoToView(dtVencimentoToView);
 				
 				invList.add(inv);
 			}

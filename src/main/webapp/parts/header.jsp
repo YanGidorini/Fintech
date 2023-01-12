@@ -36,10 +36,10 @@
                     </defs>
                     </svg>
                 </a>
-                <a href="./investimentos.html" title="Meus investimentos">
+                <a href="${pageContext.request.contextPath}/investimentos" title="Meus investimentos">
                     <svg class="header__item investment" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z"/></svg>
                 </a>
-           		<a href="./objetivos.html" title="Meus objetivos">
+           		<a href="${pageContext.request.contextPath}/objetivos" title="Meus objetivos">
                        <svg class="header__item target" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <circle cx="18.9054" cy="18.5" r="16.5" stroke="white" stroke-width="3"/>
                        <circle cx="18.9054" cy="18.5" r="8.25" stroke="white" stroke-width="3"/>
