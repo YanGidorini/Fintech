@@ -31,7 +31,6 @@ public class ReceitasServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("dao", dao);
 		listarReceitas(request, response);
 	}
 	
