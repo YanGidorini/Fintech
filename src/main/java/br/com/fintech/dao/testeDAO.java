@@ -86,20 +86,7 @@ public class testeDAO {
 //			System.out.println(item);
 //		}
 
-		/*TESTANDO RECEITA*/
-		Usuario user = userDao.selectById(2);
-		
-		String nm = "Devedores2";
-		Double vl = 15000.00;
-		String dtHr = "2022-10-20 01:00";
-		Receita receita = new Receita(nm, vl, dtHr, user);
-		
-		List<Receita> receitas = receitaDao.selectAllByUserByMonthByYear(2, "10", "2022");
-		
-		for(Receita item : receitas) {
-			System.out.println(item);
-		}
-		
+
 		
 		
 		 

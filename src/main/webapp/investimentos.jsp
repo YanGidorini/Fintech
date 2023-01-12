@@ -8,7 +8,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<fmt:setLocale value="pt_BR" />
-	<title>Despesas</title>
+	<title>Investimentos</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
                 </section>
 	
             	<div class="mb-4">
-            		<span class="title title--decorated">Despesas</span>
+            		<span class="title title--decorated">Investimentos</span>
             	</div> 
             	
             	<c:if test="${not empty msg}">

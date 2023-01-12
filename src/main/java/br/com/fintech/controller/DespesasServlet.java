@@ -13,8 +13,6 @@ import br.com.fintech.factory.DAOFactory;
 import br.com.fintech.model.Categoria;
 import br.com.fintech.model.Despesa;
 import br.com.fintech.model.DespesaMes;
-import br.com.fintech.model.Receita;
-import br.com.fintech.model.ReceitaMes;
 import br.com.fintech.model.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,9 +36,38 @@ public class DespesasServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String task = request.getParameter("task");
 		
+		switch(task) {
+			case "excluir":
+				this.excluir(request, response);
+			break;
+			
+			case "editar":
+				this.editar(request, response);
+			break;
+		}
 	}
 	
+	private void editar(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void excluir(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			int id = Integer.valueOf(request.getParameter("id"));
+			dao.delete(id);
+			
+			request.setAttribute("msg", "Despesa excluída");
+			listarDespesas(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("erro", "Falha ao deletar");
+		}
+		
+	}
+
 	protected void listarDespesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
@@ -61,6 +88,7 @@ public class DespesasServlet extends HttpServlet {
 				}
 			}
 			
+			request.setAttribute("categorias", categoriaDao.selectAll());
 			request.setAttribute("categoriaClasses", getClasses());
 			request.setAttribute("listDespesaMes", listDespesaMes);
 			request.setAttribute("years", years);

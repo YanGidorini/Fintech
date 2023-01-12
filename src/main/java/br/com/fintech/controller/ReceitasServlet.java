@@ -51,7 +51,7 @@ public class ReceitasServlet extends HttpServlet {
 	
 	private void excluir(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			int id = Integer.valueOf(request.getParameter("idReceita"));
+			int id = Integer.valueOf(request.getParameter("id"));
 			dao.delete(id);
 			
 			request.setAttribute("msg", "Receita excluída");
