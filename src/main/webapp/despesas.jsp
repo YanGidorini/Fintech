@@ -70,13 +70,22 @@
 						                            </div>
 						        
 						                            <div class="col-auto d-flex mt-3 mt-sm-0">
-						                                <button class="button me-2 me-sm-3" type="button" title="Editar despesa" data-bs-toggle="modal" data-bs-target="#editModal" onclick="edition.value = '${despesa.idDespesa}'; nome.value = '${despesa.nome}'; valor.value = '${despesa.valor}'; data.value = '${despesa.dtDespesa}' ; time.value = '${despesa.hora}'; categoriaDespesa.value = '${despesa.categoria.nmCategoria}'; selectCategoria() ">
+						                                <button class="button me-2 me-sm-3" type="button" title="Editar" data-bs-toggle="modal" data-bs-target="#editModal" 
+						                                onclick=
+							                                "edition.value = '${despesa.idDespesa}';
+							                                 nome.value = '${despesa.nome}';
+							                                 valor.value = '${despesa.valor}';
+							                                 data.value = '${despesa.dtDespesa}';
+							                                 time.value = '${despesa.hora}';
+							                                 categoriaDespesa.value = '${despesa.categoria.nmCategoria}';
+							                                 selectCategoria() "
+						                                 >
 															<svg viewBox="0 0 24 24">
 															    <path  d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
 															</svg>
 						                                </button>
 						                                
-						                                <button class="button" type="button" title="Excluir despesa" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="exclusion.value = ${despesa.idDespesa}">
+						                                <button class="button" type="button" title="Excluir" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="exclusion.value = ${despesa.idDespesa}">
 						                                    <svg viewBox="0 0 24 24">
 															    <path  d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
 															</svg>
@@ -111,6 +120,6 @@
 		document.querySelector("form#confirm-deletion").setAttribute('action','despesas');
 	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/currencyMask.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/selectCategoria.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/selects.js"></script>
 </body>
 </html>
