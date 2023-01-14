@@ -8,6 +8,7 @@ import java.util.Map;
 import br.com.fintech.dao.oracle.OracleObjetivoDAO;
 import br.com.fintech.dao.oracle.OracleReceitaDAO;
 import br.com.fintech.factory.DAOFactory;
+import br.com.fintech.model.Objetivo;
 import br.com.fintech.model.Receita;
 import br.com.fintech.model.ReceitaMes;
 import br.com.fintech.model.Usuario;
@@ -43,8 +44,30 @@ public class ObjetivosServlet extends HttpServlet {
 		}
 	}
 
-	private void editar(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			int id = Integer.valueOf(request.getParameter("idObjetivo"));
+			String nome = request.getParameter("nome");
+			Double valor = Double.valueOf( request.getParameter("valor").replace("R$", "").replace(".", "").replace(",", "."));		
+			Double vlAtual = Double.valueOf( request.getParameter("vlAtual").replace("R$", "").replace(".", "").replace(",", "."));	
+			String dtFim = request.getParameter("mes") + "/" + request.getParameter("ano");
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			
+			if (vlAtual > valor) { throw new Exception("O valor atual não pode ser maior que o valor da meta"); }
+			
+			Objetivo objetivo = new Objetivo(id, nome, valor, vlAtual, dtFim, user);
+			dao.update(objetivo);
+			
+			request.setAttribute("msg", "Objetivo atualizado!");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			request.setAttribute("msg", "Não foi possível alterar o Objetivo");
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("msg", "Não foi possível alterar o Objetivo" + ". " + e.getMessage());
+		}
+		
+		listarObjetivos(request, response);	
 		
 	}
 

@@ -41,9 +41,6 @@ public class AutenticacaoFilter extends HttpFilter implements Filter {
 		} else {
 			chain.doFilter(req, resp);
 		}
-		
-		
-		System.out.println("-----------------------------------------------------------");
-	}
+			}
 
 }
