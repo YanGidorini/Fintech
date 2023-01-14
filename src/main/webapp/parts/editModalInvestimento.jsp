@@ -34,21 +34,20 @@
 						</div>
 					</div>
 					
-					<div class="form__input-group">	
-						<input type="hidden" value="" id="corretora">
+					<div class="form__input-group">
                         <div class="form__input-field form__input-field--grow0">
                             <label for="corretora" class="form__label form__label--select">Corretora/Banco</label>
-                            <select class="form__input form__input--select" id="corretoras" name="corretora">
+                            <select class="form__input form__input--select" id="corretora" name="corretora">
                                 <c:forEach var="i" items="${corretoras}">
                                 	<option value="${i.idCorretora}">${i.nmCorretora}</option>
                                 </c:forEach>
                             </select>
                       	</div>			                       		
                       		
-						<input type="hidden" value="" id="tipo">
+						
 						<div class="form__input-field form__input-field--grow0">
                             <label for="tipo" class="form__label form__label--select">Tipo aplicação</label>
-                            <select class="form__input form__input--select" id="tipos" name="tipo">
+                            <select class="form__input form__input--select" id="tipo" name="tipo">
                                 <c:forEach var="tipo" items="${tipos}">
                                 	<option value="${tipo.idTipo}">${tipo.nmTipo}</option>
                                 </c:forEach>

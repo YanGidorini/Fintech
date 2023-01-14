@@ -17,8 +17,7 @@
                             <label for="name" class="form__label">Nome</label>
                             <input class="form__input" id="nome" type="text" name="name" maxlength="32" placeholder="Máx. 32 caracteres">
                         </div>
-						
-						<input type="hidden" value="" id="categoriaDespesa">
+							
                         <div class="form__input-field form__input-field--grow0">
                             <label for="categoria" class="form__label form__label--select">Categoria</label>
                             <select class="form__input form__input--select" id="categoria" name="categoria">
