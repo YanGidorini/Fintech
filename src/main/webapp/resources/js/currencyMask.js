@@ -9,10 +9,20 @@ function applyCurrencyMask(value) {
 }
 
 const inputs = document.querySelectorAll("#valor");
+const input = document.querySelector("#vlAtual");
 
 inputs.forEach(valorInput => {
 	valorInput.addEventListener('input', function() {
 		this.value = applyCurrencyMask(this.value);
 	}) 
+	valorInput.addEventListener('focus', function() {
+		this.value = applyCurrencyMask(this.value);
+	}) 
 })
 
+input.addEventListener('input', function() {
+	this.value = applyCurrencyMask(this.value);
+}) 
+input.addEventListener('focus', function() {
+	this.value = applyCurrencyMask(this.value);
+}) 
