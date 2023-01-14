@@ -101,7 +101,10 @@ body{
     padding: 1rem;
 }
 
-
+.card--default > p{
+	margin: 0;
+	padding: 0;
+}
 .cursor-pointer {
 	cursor: pointer;
 }
@@ -397,10 +400,11 @@ a[title="Minha conta"]:hover{
 /*---------------------------------------------*\
     #OBJETIVO
 \*---------------------------------------------*/
-.objetivo_valor-atual {
+.objetivo__valor-atual {
+	text-align: right;
     font-size: calc(.75rem + .1vw);
 }
-.objetivo_percentual {
+.objetivo__percentual {
     font-size: calc(.75rem + .1vw);
 }
 progress {

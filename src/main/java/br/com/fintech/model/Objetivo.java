@@ -1,7 +1,5 @@
 package br.com.fintech.model;
 
-import java.sql.Date;
-
 public class Objetivo extends AtividadeFinanceira {
 	private int idObjetivo;
 	private Double vlAtualObjetivo;
@@ -14,6 +12,7 @@ public class Objetivo extends AtividadeFinanceira {
 	}
 	
 	public Objetivo(int id, String nome, Double valor, Double vlAtualObjetivo, String dtFimObjetivo, Usuario usuario) {
+		if (vlAtualObjetivo > valor) { return; }
 		this.setIdObjetivo(id);
 		this.setNome(nome);
 		this.setValor(valor);
@@ -23,6 +22,7 @@ public class Objetivo extends AtividadeFinanceira {
 	}
 	
 	public Objetivo(String nome, Double valor, Double vlAtualObjetivo, String dtFimObjetivo, Usuario usuario) {
+		if (vlAtualObjetivo > valor) { return; }
 		this.setNome(nome);
 		this.setValor(valor);
 		this.setVlAtualObjetivo(vlAtualObjetivo);
@@ -31,6 +31,7 @@ public class Objetivo extends AtividadeFinanceira {
 	}
 	
 	public Objetivo(int id, String nome, Double valor, Double vlAtualObjetivo, Double porcentagem, String dtFimObjetivo, Usuario usuario) {
+		if (vlAtualObjetivo > valor) { return; }
 		this.setIdObjetivo(id);
 		this.setNome(nome);
 		this.setValor(valor);

@@ -203,7 +203,7 @@ public class OracleObjetivoDAO implements DefaultDAO {
 	 * @param idUser O código identificador do usuario
 	 * @return lista com os objetivos
 	 */
-	public List<Objetivo> selectAllByUser(int idUser) {
+	public List<Objetivo> selectAllByUser(Usuario user) {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		List<Objetivo> objetivoList = new ArrayList<Objetivo>();
@@ -221,7 +221,7 @@ public class OracleObjetivoDAO implements DefaultDAO {
 					+ "    	FROM t_objetivo"
 					+ "    WHERE cd_usuario = ? ORDER BY dt_fim_objetivo ASC";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 			
 			result = stmt.executeQuery();
 			
@@ -232,11 +232,7 @@ public class OracleObjetivoDAO implements DefaultDAO {
 				Double vlAtual = result.getDouble("VL_ATUAL_OBJETIVO");
 				Double porcentagem = result.getDouble("porcentagem");
 				String dtFim = result.getString("dt_fim_objetivo");
-				
-				//Instancia um usuario a partir do id obtido
-				OracleUsuarioDAO userDao = (OracleUsuarioDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getUsuarioDAO();
-				Usuario user = userDao.selectById(idUser);
-				
+								
 				Objetivo objetivo = new Objetivo(idObjetivo, nm, valor, vlAtual, porcentagem, dtFim, user);
 				
 				objetivoList.add(objetivo);
