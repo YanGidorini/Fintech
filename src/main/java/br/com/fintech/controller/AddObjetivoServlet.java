@@ -40,6 +40,8 @@ public class AddObjetivoServlet extends HttpServlet {
 			String dtFim = request.getParameter("mes") + "/" + request.getParameter("ano");
 			Usuario user = (Usuario) request.getSession().getAttribute("user");
 			
+			if (vlAtual > valor) { throw new Exception("O valor atual não pode ser maior que o valor da meta"); }
+			
 			Objetivo objetivo = new Objetivo(nome, valor, vlAtual, dtFim, user);
 			dao.insert(objetivo);
 			
@@ -49,7 +51,7 @@ public class AddObjetivoServlet extends HttpServlet {
 			request.setAttribute("erro", "Não foi possível adicionar o Objetivo");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("erro", "Não foi possível adicionar o Objetivo");
+			request.setAttribute("erro", "Não foi possível adicionar o Objetivo" + ". " + e.getMessage());
 		}
 		request.getRequestDispatcher("objetivo.jsp").forward(request, response);	
 		
