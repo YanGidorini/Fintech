@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import br.com.fintech.model.Usuario;
 
 public class OracleObjetivoDAO implements DefaultDAO {
 	private Connection conn = null;
+	
 	
 	@Override
 	public void insert(Object obj) {
@@ -215,8 +217,8 @@ public class OracleObjetivoDAO implements DefaultDAO {
 					+ "       	 nm_objetivo,"
 					+ "       	 vl_objetivo,"
 					+ "       	 vl_atual_objetivo,"
-					+ "       	 ROUND( (vl_atual_objetivo * 100) / vl_objetivo) as porcentagem,"
-					+ "       	 TO_CHAR(dt_fim_objetivo, 'MM/YYYY') as dt_fim_objetivo,"
+					+ "       	 ROUND( (vl_atual_objetivo * 100) / vl_objetivo,1) as porcentagem,"
+					+ "       	 TO_CHAR(dt_fim_objetivo, 'MM/YYYY') as dt_fim,"
 					+ "       	 cd_usuario"
 					+ "    	FROM t_objetivo"
 					+ "    WHERE cd_usuario = ? ORDER BY dt_fim_objetivo ASC";
@@ -231,7 +233,7 @@ public class OracleObjetivoDAO implements DefaultDAO {
 				Double valor = result.getDouble("VL_OBJETIVO");
 				Double vlAtual = result.getDouble("VL_ATUAL_OBJETIVO");
 				Double porcentagem = result.getDouble("porcentagem");
-				String dtFim = result.getString("dt_fim_objetivo");
+				String dtFim = result.getString("dt_fim");
 								
 				Objetivo objetivo = new Objetivo(idObjetivo, nm, valor, vlAtual, porcentagem, dtFim, user);
 				
