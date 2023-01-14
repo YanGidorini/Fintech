@@ -57,7 +57,7 @@ public class ReceitasServlet extends HttpServlet {
 			listarReceitas(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+			request.setAttribute("erro", "Falha ao deletar");
 		}
 	}
 	

@@ -13,6 +13,7 @@ import br.com.fintech.factory.DAOFactory;
 import br.com.fintech.model.Categoria;
 import br.com.fintech.model.Despesa;
 import br.com.fintech.model.DespesaMes;
+import br.com.fintech.model.Receita;
 import br.com.fintech.model.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -50,7 +51,28 @@ public class DespesasServlet extends HttpServlet {
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		try {
+			int id = Integer.valueOf(request.getParameter("idDespesa"));
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			String nome = request.getParameter("name");
+			Double valor = Double.valueOf( request.getParameter("valor").replace("R$", "").replace(".", "").replace(",", "."));		
+			String date = request.getParameter("date");
+			String time = request.getParameter("time");
+			Categoria categoria = categoriaDao.selectById( Integer.valueOf(request.getParameter("categoria")) );
+			
+			if (!time.equals("")) {
+				date = date + " " + time;
+			}
+
+			Despesa despesa = new Despesa(id, nome, valor, date, categoria, user);
+			dao.update(despesa);
+			
+			request.setAttribute("msg", "Despesa atualizada");
+			listarDespesas(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
 		
 	}
 
