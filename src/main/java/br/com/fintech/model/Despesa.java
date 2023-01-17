@@ -4,6 +4,8 @@ public class Despesa extends AtividadeFinanceira {
 	private int idDespesa;
 	private String dtDespesa;
 	private String dtExtenso;
+	private String ano;
+	private String mes;
 	private String hora;
 	private Categoria categoria; //relacionamento
 	private Usuario usuario; //relacionamento
@@ -12,6 +14,16 @@ public class Despesa extends AtividadeFinanceira {
 		
 	}
 	
+	public Despesa(String nome, Double valor, String ano, String mes, String dtExtenso, String hora, Usuario user, Categoria categoria) {
+		this.setNome(nome);
+		this.setValor(valor);
+		this.setAno(ano);
+		this.setMes(mes);
+		this.setDtExtenso(dtExtenso);
+		this.setHora(hora);
+		this.setUsuario(user);
+		this.setCategoria(categoria);
+	}
 	//usado para insert
 	public Despesa(String nome, Double valor, String dtDespesa, Categoria categoria, Usuario usuario) {
 		this.setNome(nome);
@@ -97,6 +109,22 @@ public class Despesa extends AtividadeFinanceira {
 
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+
+	public String getAno() {
+		return ano;
+	}
+
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
 	}
 	
 	

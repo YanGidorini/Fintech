@@ -91,7 +91,7 @@ public class UsuarioServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				
-				response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
+				response.sendRedirect(request.getContextPath() + "/dashboard");
 			} else {
 				//não encontrou registro
 				request.setAttribute("erro", "Usuário e/ou senha inválidos");

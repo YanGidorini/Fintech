@@ -56,14 +56,6 @@ body{
 .text-color--positive {
     color: var(--receita-color);
 }
-.tag--positive {
-    background-color: var(--receita-color);
-}
-.tag--negative {
-    background-color: var(--despesa-color);
-}
-
-
 .font-color-0 {
     color: var(--font-color-0);
 }
@@ -74,7 +66,7 @@ body{
 
 .title {
     font-weight: 600;
-    font-size: calc(1rem + .5vw);   
+    font-size: calc(1rem + .2vw);   
 }
 .title--decorated {
 	border-radius: 0px 42px 42px 42px;
@@ -374,27 +366,15 @@ a[title="Minha conta"]:hover{
 /*---------------------------------------------*\
     #DASHBOARD
 \*---------------------------------------------*/
-.dashboard_card > p {
-    padding: 0 1rem;
-}
+.dashboard__tag { color:white; }
+.dashboard__tag--positive { background-color: var(--receita-color); }
+.dashboard__tag--negative { background-color: var(--despesa-color); }
 
-.dashboard_card-tag {
-    color:white;
-}
-.dashboard svg {
-    width: var(--icon-size);
-    height: var(--icon-size);
-}
-.dashboard_card-icon {
+.dashboard__icon {
     fill: white;
     margin-right: calc(var(--spacing-12) - 5px);
-}
-.dashboard_objetivo p{
-    padding: 0;
-    margin: 0;
-}
-.dashboard_investimento .dashboard_card {
-    width: fit-content;
+    width: var(--icon-size);
+    height: var(--icon-size);
 }
 
 /*---------------------------------------------*\

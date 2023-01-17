@@ -14,6 +14,7 @@ import br.com.fintech.database.DBConnectionManager;
 import br.com.fintech.factory.DAOFactory;
 import br.com.fintech.model.Categoria;
 import br.com.fintech.model.Despesa;
+import br.com.fintech.model.Receita;
 import br.com.fintech.model.Usuario;
 
 public class OracleDespesaDAO implements DefaultDAO {
@@ -420,6 +421,61 @@ public class OracleDespesaDAO implements DefaultDAO {
 		return years;	
 	}
 
+	public Despesa lastDespesa(Usuario user) {
+		Despesa despesa = null;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			conn = DBConnectionManager.getInstance().getConn();
+			
+			String sql = "SELECT * FROM (SELECT "
+							  + "nm_despesa, "
+							  + "vl_despesa, "
+							  + "TO_CHAR(dt_hr_despesa, 'YYYY') as ano, "
+							  + "TO_CHAR(dt_hr_despesa, 'MM') as mes, "
+							  + "TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(TO_CHAR(dt_hr_despesa, 'Dy, DD \"de\" Month', 'NLS_DATE_LANGUAGE=PORTUGUESE'), 'Dom', 'Domingo'), 'Seg','Segunda-feira'), 'Ter','Terça-feira'), 'Qua','Quarta-feira'), 'Qui','Quinta-feira'), 'Sex','Sexta-feira'), 'Sáb','Sábado')) as dt_extenso, "
+							  + "TO_CHAR(dt_hr_despesa, 'HH24:MI') as hr_despesa,"
+							  + "cd_categoria "
+						+ "FROM t_despesa "
+						+ "WHERE cd_usuario = ? "
+						+ "ORDER BY dt_hr_despesa DESC) WHERE ROWNUM = 1";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, user.getIdUsuario());
+			
+			result = stmt.executeQuery();
+	
+			if(result.next()) {
+				String nm = result.getString("nm_despesa");
+				Double vl = result.getDouble("vl_despesa");
+				String ano = result.getString("ano");
+				String mes = result.getString("mes");
+				String dtExtenso = result.getString("DT_EXTENSO");
+				String hr = result.getString("hr_despesa");
+				int idCategoria = result.getInt("CD_CATEGORIA");
+				
+				if (hr.equals("00:00")) { hr = ""; }
+				
+				OracleCategoriaDAO categoriaDao = (OracleCategoriaDAO) DAOFactory.getDAOFactory(DAOFactory.ORACLE).getCategoriaDAO();
+				Categoria categoria = categoriaDao.selectById(idCategoria);
+				
+				despesa = new Despesa(nm, vl, ano, mes, dtExtenso, hr, user, categoria);
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
+		}
+		
+		return despesa;
+	}
 	
 }

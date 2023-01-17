@@ -4,11 +4,22 @@ public class Receita extends AtividadeFinanceira {
 	private int idReceita;
 	private String dtReceita;
 	private String dtExtenso;
+	private String ano;
+	private String mes;
 	private String hora;
 	private Usuario usuario; //relacionamento
 	
 	public Receita() {}
 	
+	public Receita(String nome, Double valor, String ano, String mes, String dtExtenso, String hora, Usuario user) {
+		this.setNome(nome);
+		this.setValor(valor);
+		this.setAno(ano);
+		this.setMes(mes);
+		this.setDtExtenso(dtExtenso);
+		this.setHora(hora);
+		this.setUsuario(user);
+	}
 	public Receita(String nome, Double valor, String dtReceita, Usuario usuario) {
 		this.setNome(nome);
 		this.setValor(valor);
@@ -77,6 +88,22 @@ public class Receita extends AtividadeFinanceira {
 
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+
+	public String getAno() {
+		return ano;
+	}
+
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
 	}
 	
 }

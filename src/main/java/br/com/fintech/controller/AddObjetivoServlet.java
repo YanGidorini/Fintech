@@ -2,16 +2,11 @@ package br.com.fintech.controller;
 
 import java.io.IOException;
 
-import br.com.fintech.dao.oracle.OracleCorretoraDAO;
-import br.com.fintech.dao.oracle.OracleInvestimentoDAO;
 import br.com.fintech.dao.oracle.OracleObjetivoDAO;
-import br.com.fintech.dao.oracle.OracleTipoAplicacaoDAO;
 import br.com.fintech.factory.DAOFactory;
 import br.com.fintech.model.Usuario;
-import br.com.fintech.model.Corretora;
-import br.com.fintech.model.Investimento;
 import br.com.fintech.model.Objetivo;
-import br.com.fintech.model.TipoAplicacao;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
