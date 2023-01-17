@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,6 @@ import java.util.Map;
 import br.com.fintech.dao.DefaultDAO;
 import br.com.fintech.database.DBConnectionManager;
 import br.com.fintech.factory.DAOFactory;
-import br.com.fintech.model.Categoria;
 import br.com.fintech.model.Receita;
 import br.com.fintech.model.Usuario;
 
@@ -52,7 +50,7 @@ public class OracleReceitaDAO implements DefaultDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, receita.getNome());
-			stmt.setDouble(2, receita.getValor());
+			stmt.setBigDecimal(2, receita.getValor());
 			stmt.setString(3, receita.getDtReceita());
 			stmt.setInt(4, receita.getUsuario().getIdUsuario());
 			
@@ -87,7 +85,7 @@ public class OracleReceitaDAO implements DefaultDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, receita.getNome());
-			stmt.setDouble(2, receita.getValor());
+			stmt.setBigDecimal(2, receita.getValor());
 			stmt.setString(3, receita.getDtReceita());
 			stmt.setInt(4, receita.getIdReceita());
 			

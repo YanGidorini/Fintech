@@ -50,7 +50,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, despesa.getNome());
-			stmt.setDouble(2, despesa.getValor());
+			stmt.setBigDecimal(2, despesa.getValor());
 			stmt.setString(3, despesa.getDtDespesa());
 			stmt.setInt(4, despesa.getCategoria().getIdCategoria());
 			stmt.setInt(5, despesa.getUsuario().getIdUsuario());
@@ -88,7 +88,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, despesa.getNome());
-			stmt.setDouble(2, despesa.getValor());
+			stmt.setBigDecimal(2, despesa.getValor());
 			stmt.setString(3, despesa.getDtDespesa());
 			stmt.setInt(4, despesa.getCategoria().getIdCategoria());
 			stmt.setInt(5, despesa.getUsuario().getIdUsuario());

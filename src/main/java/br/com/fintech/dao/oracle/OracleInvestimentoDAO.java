@@ -31,7 +31,7 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, investimento.getNome());
-			stmt.setDouble(2, investimento.getValor());
+			stmt.setBigDecimal(2, investimento.getValor());
 			stmt.setString(3, investimento.getDtRealizacao());
 			stmt.setString(4, investimento.getDtVencimento());
 			stmt.setInt(5, investimento.getUsuario().getIdUsuario());
@@ -74,7 +74,7 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, investimento.getNome());
-			stmt.setDouble(2, investimento.getValor());
+			stmt.setBigDecimal(2, investimento.getValor());
 			stmt.setString(3, investimento.getDtRealizacao());
 			stmt.setString(4, investimento.getDtVencimento());
 			stmt.setInt(5, investimento.getCorretora().getIdCorretora());

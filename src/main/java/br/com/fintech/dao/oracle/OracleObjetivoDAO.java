@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import br.com.fintech.model.Usuario;
 public class OracleObjetivoDAO implements DefaultDAO {
 	private Connection conn = null;
 	
-	
 	@Override
 	public void insert(Object obj) {
 		Objetivo objetivo = (Objetivo) obj;
@@ -29,8 +27,8 @@ public class OracleObjetivoDAO implements DefaultDAO {
 						+ "VALUES (sq_objetivo.nextval, ?, ?, ?, TO_DATE(?, 'MM/YYYY'), ?)";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, objetivo.getNome());
-			stmt.setDouble(2, objetivo.getValor());
-			stmt.setDouble(3, objetivo.getVlAtualObjetivo());
+			stmt.setBigDecimal(2, objetivo.getValor());
+			stmt.setBigDecimal(3, objetivo.getVlAtualObjetivo());
 			stmt.setString(4, objetivo.getDtFimObjetivo());
 			stmt.setInt(5, objetivo.getUsuario().getIdUsuario());
 			
@@ -60,8 +58,8 @@ public class OracleObjetivoDAO implements DefaultDAO {
 			String sql = "UPDATE t_objetivo SET nm_objetivo = ?, vl_objetivo = ?, vl_atual_objetivo = ?,  dt_fim_objetivo = TO_DATE(?, 'MM/YYYY') WHERE cd_objetivo = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, objetivo.getNome());
-			stmt.setDouble(2, objetivo.getValor());
-			stmt.setDouble(3, objetivo.getVlAtualObjetivo());
+			stmt.setBigDecimal(2, objetivo.getValor());
+			stmt.setBigDecimal(3, objetivo.getVlAtualObjetivo());
 			stmt.setString(4, objetivo.getDtFimObjetivo());
 			stmt.setInt(5, objetivo.getIdObjetivo());
 			

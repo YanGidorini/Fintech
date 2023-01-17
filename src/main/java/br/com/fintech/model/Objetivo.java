@@ -1,8 +1,11 @@
 package br.com.fintech.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Objetivo extends AtividadeFinanceira {
 	private int idObjetivo;
-	private Double vlAtualObjetivo;
+	private BigDecimal vlAtualObjetivo;
 	private Double porcentagem;
 	private String dtFimObjetivo;
 	private Usuario usuario; //relacionamento
@@ -70,14 +73,15 @@ public class Objetivo extends AtividadeFinanceira {
 		this.usuario = usuario;
 	}
 
-	public Double getVlAtualObjetivo() {
+	public BigDecimal getVlAtualObjetivo() {
 		return vlAtualObjetivo;
 	}
 
 	public void setVlAtualObjetivo(Double vlAtualObjetivo) {
-		this.vlAtualObjetivo = vlAtualObjetivo;
+		BigDecimal bd = new BigDecimal(vlAtualObjetivo).setScale(2, RoundingMode.HALF_UP);
+		this.vlAtualObjetivo = bd;
 	}
-
+	
 	public Double getPorcentagem() {
 		return porcentagem;
 	}
