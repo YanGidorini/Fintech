@@ -38,6 +38,12 @@ public class UsuarioServlet extends HttpServlet {
 			case "logout":
 				this.logout(request, response);
 				break;
+			
+			case "conta":
+				Usuario user = (Usuario) request.getSession().getAttribute("user");
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("conta.jsp").forward(request, response);
+				break;
 		}
 	}
 	
@@ -52,8 +58,15 @@ public class UsuarioServlet extends HttpServlet {
 		case "login":
 			this.login(request, response);
 			break;
+			
+		case "editar":
+			this.editar(request, response);
+			break;
+			
+		case "editarSenha":
+			this.editarSenha(request, response);
+			break;
 		}
-		
 	}
 	
 	private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,5 +124,35 @@ public class UsuarioServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath());
 	}
 	
+	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession();
+			String nome = request.getParameter("nome");
+			String email = request.getParameter("email");
+			String dtNasc = request.getParameter("dtNasc");
+			String genero = request.getParameter("genero");
+			Usuario user = (Usuario) session.getAttribute("user");
+			
+			user.setNmUsuario(nome);
+			user.setEmail(email);
+			user.setDtNascimento(dtNasc);
+			user.setGenero(genero);
+			
+			dao.update(user);
+			session.setAttribute("user", user);
+			
+			request.setAttribute("user", user);
+			request.setAttribute("msg", "Dados alterados!");
+		} catch (Exception e) {
+			request.setAttribute("erro", "Não foi possível alterar os dados");
+		}
+		
+		request.getRequestDispatcher("conta.jsp").forward(request, response);
+	}
+	
+	private void editarSenha(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
