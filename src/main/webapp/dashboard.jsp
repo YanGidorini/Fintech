@@ -139,27 +139,41 @@
                     	<div class="mb-4">
                     		<span class="title title--decorated">Receita mais recente</span>
                     	</div>
-                    	<p class="d-flex justify-content-between mb-2 font-color-1">${receitaRecente.dtExtenso} <time>${receitaRecente.hora}</time></p>
-                    	<div class="card--default position-relative">
-                            <div class="d-flex justify-content-between">
-                                <span>${receitaRecente.nome}</span>
-                                <span class="text-color--positive">+ <fmt:formatNumber value="${receitaRecente.valor}" type="currency"/></span>
-                            </div>
-                        </div>
+                    	<c:choose>
+                    		<c:when test="${receitaRecente != null}">
+		                    	<p class="d-flex justify-content-between mb-2 font-color-1">${receitaRecente.dtExtenso} <time>${receitaRecente.hora}</time></p>
+		                    	<div class="card--default position-relative">
+		                            <div class="d-flex justify-content-between">
+		                                <span>${receitaRecente.nome}</span>
+		                                <span class="text-color--positive">+ <fmt:formatNumber value="${receitaRecente.valor}" type="currency"/></span>
+		                            </div>
+		                        </div>
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<h1 class="title text-center">Nenhuma receita adicionada ainda</h1>
+	                        </c:otherwise>
+                        </c:choose>
                     </div>
                     
                     <div class="col-md mt-4 mt-md-0">
                     	<div class="mb-4">
                     		<span class="title title--decorated">Despesa mais recente</span>
                     	</div>
-                    	<p class="d-flex justify-content-between mb-2 font-color-1">${despesaRecente.dtExtenso} <time>${despesaRecente.hora}</time></p>
-      					<div class="card--default position-relative">
-                        	<div class="categoria__tag--inline ${categoriaClasses.get(despesaRecente.categoria.nmCategoria)}"></div>
-                            <div class="d-flex justify-content-between">
-                                <span>${despesaRecente.nome}</span>
-                                <span class="text-color--negative">- <fmt:formatNumber value="${despesaRecente.valor}" type="currency"/></span>
-                            </div>
-                        </div>
+                    	<c:choose>
+                    		<c:when test="${despesaRecente != null}">
+		                    	<p class="d-flex justify-content-between mb-2 font-color-1">${despesaRecente.dtExtenso} <time>${despesaRecente.hora}</time></p>
+		      					<div class="card--default position-relative">
+		                        	<div class="categoria__tag--inline ${categoriaClasses.get(despesaRecente.categoria.nmCategoria)}"></div>
+		                            <div class="d-flex justify-content-between">
+		                                <span>${despesaRecente.nome}</span>
+		                                <span class="text-color--negative">- <fmt:formatNumber value="${despesaRecente.valor}" type="currency"/></span>
+		                            </div>
+		                        </div>
+                        	</c:when>
+                        	<c:otherwise>
+	                        	<h1 class="title text-center">Nenhuma despesa adicionada ainda</h1>
+	                        </c:otherwise>
+                        </c:choose>
                     </div>
                 </section>             
 			</div>

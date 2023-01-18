@@ -95,7 +95,6 @@ public class UsuarioServlet extends HttpServlet {
 			String senha = request.getParameter("pswd");
 			Usuario user = new Usuario(email, senha);
 			int idUser = dao.authenticate(user);
-			System.out.println("id: " + idUser);
 			
 			if(idUser != 0) {
 				//define a sessão
