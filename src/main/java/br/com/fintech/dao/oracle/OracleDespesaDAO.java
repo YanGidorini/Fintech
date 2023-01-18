@@ -14,7 +14,6 @@ import br.com.fintech.database.DBConnectionManager;
 import br.com.fintech.factory.DAOFactory;
 import br.com.fintech.model.Categoria;
 import br.com.fintech.model.Despesa;
-import br.com.fintech.model.Receita;
 import br.com.fintech.model.Usuario;
 
 public class OracleDespesaDAO implements DefaultDAO {
@@ -346,8 +345,9 @@ public class OracleDespesaDAO implements DefaultDAO {
 	
 	/**
 	 * Soma todas as despesas de um usuário durante um mês específico
-	 * @param idUser O código identificador do usuario
+	 * @param user O objeto usuario
 	 * @param mes O mes em questão
+	 * @param ano O ano do mes
 	 * @return A soma
 	 */
 	public Double sumDespesas(Usuario user, String mes, String ano) {
@@ -386,6 +386,13 @@ public class OracleDespesaDAO implements DefaultDAO {
 		return sum;
 	}
 	
+	/**
+	 * Seleciona os anos que possuem registros
+	 * @param user O objeto usuario
+	 * @param mes O mes em questão
+	 * @param ano O ano do mes
+	 * @return List com anos
+	 */
 	public List<String> selectYears(Usuario user) {
 		List<String> years = new ArrayList<String>();
 		PreparedStatement stmt = null;
@@ -420,7 +427,12 @@ public class OracleDespesaDAO implements DefaultDAO {
 		
 		return years;	
 	}
-
+	
+	/**
+	 * Seleciona a despesa mais recente
+	 * @param user O objeto usuario
+	 * @return Um objeto Despesa
+	 */
 	public Despesa lastDespesa(Usuario user) {
 		Despesa despesa = null;
 		PreparedStatement stmt = null;

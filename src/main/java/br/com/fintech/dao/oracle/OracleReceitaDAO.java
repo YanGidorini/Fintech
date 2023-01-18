@@ -224,7 +224,7 @@ public class OracleReceitaDAO implements DefaultDAO {
 	
 	/**
 	 * Método usado para recuperar todas as receitas de um usuário para mostrar na tela, formatado o máximo possível
-	 * @param idUser O código identificador do usuario
+	 * @param user O objeto usuario
 	 * @param mes O mes das despesas
 	 * @param ano O ano das despesas
 	 * @return Lista das despesas de um usuario especifico
@@ -288,8 +288,9 @@ public class OracleReceitaDAO implements DefaultDAO {
 		
 	/**
 	 * Soma todas as receitas de um usuário durante um mês específico
-	 * @param idUser O código identificador do usuario
+	 * @param user O objeto usuario
 	 * @param mes O mes em questão
+	 * @param ano O ano do mes
 	 * @return A soma
 	 */
 	public Double sumReceitas(Usuario user, String mes, String ano) {
@@ -328,7 +329,13 @@ public class OracleReceitaDAO implements DefaultDAO {
 		return sum;	
 	};
 	
-	
+	/**
+	 * Seleciona os anos que possuem registros
+	 * @param user O objeto usuario
+	 * @param mes O mes em questão
+	 * @param ano O ano do mes
+	 * @return List com anos
+	 */
 	public List<String> selectYears(Usuario user) {
 		List<String> years = new ArrayList<String>();
 		PreparedStatement stmt = null;
@@ -364,6 +371,11 @@ public class OracleReceitaDAO implements DefaultDAO {
 		return years;	
 	}
 	
+	/**
+	 * Seleciona a receita mais recente
+	 * @param user O objeto usuario
+	 * @return Um objeto receita
+	 */
 	public Receita lastReceita(Usuario user) {
 		Receita receita = null;
 		PreparedStatement stmt = null;
