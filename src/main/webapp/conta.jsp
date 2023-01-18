@@ -85,10 +85,10 @@
 				</div>
 				
 				<c:if test="${not empty msgSenha}">
-					<div class="alert alert-success">${msg}</div>
+					<div class="alert alert-success">${msgSenha}</div>
 				</c:if>
-				<c:if test="${not empty erroSenhagithu}">
-					<div class="alert alert-danger">${erro}</div>
+				<c:if test="${not empty erroSenha}">
+					<div class="alert alert-danger">${erroSenha}</div>
 				</c:if>
 				
                 <div class="card--default">
@@ -96,17 +96,17 @@
                     	<input type="hidden" value="editarSenha" name="task">
                         <div class="form__input-field">
                             <label for="pswd" class="form__label">Senha atual<span class="form__mandatory">*</span></label>
-                            <input class="form__input" id="pswd" type="password">
+                            <input class="form__input" id="pswd" type="password" name="currentPswd" required>
                         </div>
 
                         <div class="form__input-field">
                             <label for="pswd" class="form__label">Senha nova<span class="form__mandatory">*</span></label>
-                            <input class="form__input" id="pswd" type="password" placeholder="6 ou mais caracteres">
+                            <input class="form__input" id="pswd" type="password" name="newPswd" placeholder="6 ou mais caracteres" required>
                         </div>
     
                         <div class="form__input-field">
                             <label for="pswd" class="form__label">Confirmar senha nova<span class="form__mandatory">*</span></label>
-                            <input class="form__input" id="pswd" type="password" placeholder="Deve ser idêntica a senha nova">
+                            <input class="form__input" id="pswd" type="password" name="confirmedNewPswd" placeholder="Deve ser idêntica a senha nova" required>
                         </div>
 
                         <button class="form__btn" type="submit">Alterar</button>

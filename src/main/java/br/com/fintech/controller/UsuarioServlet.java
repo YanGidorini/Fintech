@@ -94,8 +94,8 @@ public class UsuarioServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String senha = request.getParameter("pswd");
 			Usuario user = new Usuario(email, senha);
-			
 			int idUser = dao.authenticate(user);
+			System.out.println("id: " + idUser);
 			
 			if(idUser != 0) {
 				//define a sessão
@@ -150,9 +150,19 @@ public class UsuarioServlet extends HttpServlet {
 		request.getRequestDispatcher("conta.jsp").forward(request, response);
 	}
 	
-	private void editarSenha(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void editarSenha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Usuario user = (Usuario) request.getSession().getAttribute("user");
+			String currentPswd = request.getParameter("currentPswd");
+			String newPswd = request.getParameter("newPswd");
+			String confirmedNewPswd = request.getParameter("confirmedNewPswd");
+			
+			dao.updatePswd(user, currentPswd, newPswd, confirmedNewPswd);
+			request.setAttribute("msgSenha", "Senha alterada");
+		} catch (Exception e) {
+			request.setAttribute("erroSenha", e.getMessage());
+		}
+		request.getRequestDispatcher("conta.jsp").forward(request, response);
 	}
 	
 }

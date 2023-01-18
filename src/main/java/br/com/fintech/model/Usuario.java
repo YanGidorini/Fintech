@@ -48,7 +48,7 @@ public class Usuario {
 		this.setGenero(genero);
 	}
 	
-	private String encrypt(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public String encrypt(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 		algorithm.update(senha.getBytes("UTF-8"));
 		

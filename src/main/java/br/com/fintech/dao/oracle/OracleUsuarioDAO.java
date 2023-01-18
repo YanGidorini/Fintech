@@ -202,17 +202,18 @@ public class OracleUsuarioDAO implements DefaultDAO {
 	 * @param currentPswd A atual senha digitada
 	 * @param newPswd A nova senha digitada
 	 * @param newPswdConfirmed A confirmação da nova senha digitada
+	 * @throws Exception 
 	 */
-	public void updatePswd(Usuario user, String currentPswd, String newPswd, String newPswdConfirmed) {
-		String currentPswdInDB = user.getSenha();
-		
+	public void updatePswd(Usuario user, String currentPswd, String newPswd, String confirmedNewPswd) throws Exception {
 		PreparedStatement stmt = null;
-		
+		String currentPswdInDB = this.selectPswd(user);
+		currentPswd = user.encrypt(currentPswd);
+				
 		//verifica se a senha atual digitada é igual a senha cadastrada
 		if( currentPswdInDB.equals(currentPswd) ) {
 			//verifica se a nova senha é igual a sua confirmação
-			if ( newPswd.equals(newPswdConfirmed) ) {
-				user.setSenha(newPswdConfirmed);
+			if ( newPswd.equals(confirmedNewPswd) ) {
+				user.setSenha(confirmedNewPswd);
 				
 				try {
 					conn = DBConnectionManager.getInstance().getConn();
@@ -236,14 +237,46 @@ public class OracleUsuarioDAO implements DefaultDAO {
 					
 				}
 			} else {
-				System.out.println("A nova senha não é idêntica a sua confirmação!!");
+				throw new Exception("Novas senhas não correspondem");				
 			}
 		} else {
-			System.out.println("A senha atual digitada não é igual a senha cadastrada.");
+			throw new Exception("Senha atual incorreta");
 		}
 		
 	}
 	
+	private String selectPswd(Usuario user) {
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		String pswd = null;
+		try {
+			conn = DBConnectionManager.getInstance().getConn();
+			
+			String sql = "SELECT ds_senha FROM t_usuario WHERE cd_usuario = ?";
+			stmt = conn.prepareStatement(sql);		
+			stmt.setInt(1, user.getIdUsuario());
+			
+			result = stmt.executeQuery();
+			
+			if(result.next()) {
+				pswd = result.getString("ds_senha");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				conn.close();
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return pswd;
+	}
+
 	public int authenticate(Usuario user) {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
