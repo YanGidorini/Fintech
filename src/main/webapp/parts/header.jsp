@@ -49,7 +49,7 @@
             </nav>
         
             <div class="col d-flex justify-content-sm-end">
-                <a href="./conta.html" title="Minha conta">
+                <a href="${pageContext.request.contextPath}/usuario?task=conta" title="Minha conta">
                     <div class="header__account d-flex align-items-center">
                         <span class="header__account-name">whindersson</span>
                         <div class="header__account-photo">
@@ -60,7 +60,7 @@
             </div>
 	
 			<div class="col-auto">
-				<a href="usuario?task=logout">
+				<a href="${pageContext.request.contextPath}/usuario?task=logout">
 					<svg class="header__item" viewBox="0 0 24 24">
     					<path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z" />
 					</svg>
