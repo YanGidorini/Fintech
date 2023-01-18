@@ -26,7 +26,7 @@
                         <img src="${pageContext.request.contextPath}/resources/imgs/FotoPerfil.png" alt="foto de perfil">
                     </label>
 
-                    <p class="title title--500 mb-0">Account Name</p>
+                    <p class="title title--500 mb-0">${user.nmUsuario}</p>
                 </div>
             </div>
             
