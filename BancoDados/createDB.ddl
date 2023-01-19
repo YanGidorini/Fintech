@@ -21,7 +21,7 @@ CREATE TABLE t_despesa (
     cd_despesa    NUMBER(6) NOT NULL,
     nm_despesa    VARCHAR2(80) NOT NULL,
     vl_despesa    NUMBER(16, 2) NOT NULL,
-    dt_despesa    DATE NOT NULL,
+    dt_hr_despesa    DATE NOT NULL,
     cd_categoria  NUMBER(2) NOT NULL,
     cd_usuario    NUMBER(4) NOT NULL
 );
@@ -183,12 +183,6 @@ CREATE SEQUENCE sq_investimento
     NOCACHE
     NOCYCLE;
 
-CREATE SEQUENCE sq_test
-    START WITH 1
-    INCREMENT BY 1
-    MAXVALUE 999999
-    NOCACHE
-    NOCYCLE;
 
 -- Categorias predefinidas
 INSERT INTO t_categoria VALUES (sq_categoria.nextval, 'Aluguel');
