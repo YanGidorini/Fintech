@@ -51,7 +51,7 @@
             <div class="col d-flex justify-content-sm-end">
                 <a href="${pageContext.request.contextPath}/usuario?task=conta" title="Minha conta">
                     <div class="header__account d-flex align-items-center">
-                        <span class="header__account-name">whindersson</span>
+                        <span class="header__account-name">${sessionScope.user.nmUsuario}</span>
                         <div class="header__account-photo">
                             <img src="${pageContext.request.contextPath}/resources/imgs/FotoPerfil.png" alt="foto de perfil">
                         </div>
