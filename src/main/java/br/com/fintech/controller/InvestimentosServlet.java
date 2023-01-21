@@ -109,6 +109,10 @@ public class InvestimentosServlet extends HttpServlet {
 
 	}
 	
+	/**
+	 * Relaciona as classes css com os tipos de investimentos no banco 
+	 * @return mapa com nome da classe e o tipo
+	 */
 	protected Map<String, String> getClasses() {
 		List<String> classes = new ArrayList<>(){{
 			add("categoria__tag--cdb");

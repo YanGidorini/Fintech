@@ -2,6 +2,9 @@ package br.com.fintech.dao;
 
 import java.util.List;
 
+/**
+ * Interface que define os métodos para toda classe DAO
+ */
 public interface DefaultDAO {
 	/**
 	 * Insere no banco de dados 

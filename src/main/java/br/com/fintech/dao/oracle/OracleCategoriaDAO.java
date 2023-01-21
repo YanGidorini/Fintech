@@ -12,6 +12,9 @@ import br.com.fintech.database.DBConnectionManager;
 import br.com.fintech.model.Categoria;
 
 public class OracleCategoriaDAO implements DefaultDAO  {
+	/**
+	 * Variável que armazena conexão
+	 */
 	private Connection conn = null;
 
 	@Override

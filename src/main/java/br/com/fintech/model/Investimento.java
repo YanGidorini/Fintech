@@ -1,15 +1,26 @@
 package br.com.fintech.model;
 
 
-
+/**
+ * Classe que abstrai um investimento, um valor gasto que possui retorno esperado
+ */
 public class Investimento extends AtividadeFinanceira {
 	private int idInvestimento;
 	private String dtRealizacao;
 	private String dtVencimento;
 	private String dtRealizacaoToView;
 	private String dtVencimentoToView;
+	/**
+	 * Atributo de relacionamento: o objeto Usuario associado
+	 */
 	private Usuario usuario; //relacionamento
+	/**
+	 * Atributo de relacionamento: o objeto Corretora associado
+	 */
 	private Corretora corretora; //relacionamento
+	/**
+	 * Atributo de relacionamento: o objeto TipoAplicacao associado
+	 */
 	private TipoAplicacao tipo; //relacionamento
 	
 	public Investimento(){}
@@ -57,7 +68,10 @@ public class Investimento extends AtividadeFinanceira {
 		this.setTipo(tipo);
 		this.setUsuario(usuario);
 	}
-		
+	
+	/**
+	 * @return uma string com todos ou alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "Investimento [idInvestimento=" + idInvestimento + ", nome=" + this.getNome() + ", valor=" + this.getValor() + ", dtRealizacao=" + dtRealizacao + ", dtVencimento=" + dtVencimento + 

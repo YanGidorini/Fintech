@@ -12,6 +12,9 @@ import br.com.fintech.database.DBConnectionManager;
 import br.com.fintech.model.TipoAplicacao;
 
 public class OracleTipoAplicacaoDAO implements DefaultDAO {
+	/**
+	 * Variável que armazena a conexão
+	 */
 	private Connection conn = null;
 	
 	@Override

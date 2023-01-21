@@ -16,7 +16,9 @@ import br.com.fintech.model.Usuario;
  * @author Yan Gidorini Silva
  */
 public class OracleUsuarioDAO implements DefaultDAO {
-	
+	/**
+	 * Atributo que armazena a conexão
+	 */
 	private Connection conn = null;
 	
 	@Override
@@ -245,6 +247,10 @@ public class OracleUsuarioDAO implements DefaultDAO {
 		
 	}
 	
+	/**
+	 * Seleciona o hash da senha de um usuário
+	 * @param user Objeto usuário
+	 */
 	private String selectPswd(Usuario user) {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -276,7 +282,13 @@ public class OracleUsuarioDAO implements DefaultDAO {
 		}
 		return pswd;
 	}
-
+	
+	
+	/**
+	 * Auntenicação com o BD para logar no sistema
+	 * @param user Objeto usuario
+	 * @return o id do usuário
+	 */
 	public int authenticate(Usuario user) {
 		PreparedStatement stmt = null;
 		ResultSet result = null;

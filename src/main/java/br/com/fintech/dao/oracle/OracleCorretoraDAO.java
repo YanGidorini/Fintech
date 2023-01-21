@@ -12,6 +12,9 @@ import br.com.fintech.database.DBConnectionManager;
 import br.com.fintech.model.Corretora;
 
 public class OracleCorretoraDAO implements DefaultDAO {
+	/**
+	 * Variável que armazena conexão
+	 */
 	private Connection conn = null;
 	
 	@Override

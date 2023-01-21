@@ -1,5 +1,8 @@
 package br.com.fintech.model;
 
+/**
+ * Classe que abstrai qual o tipo de investimento realizado
+ */
 public class TipoAplicacao {
 	private int idTipo;
 	private String nmTipo;
@@ -17,7 +20,10 @@ public class TipoAplicacao {
 		this.setNmTipo(nmTipo);
 		
 	}
-
+	
+	/**
+	 * @return uma string com todos ou alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "TipoAplicacao [idTipo=" + idTipo + ", nmTipo=" + nmTipo + "]";

@@ -123,6 +123,10 @@ public class DespesasServlet extends HttpServlet {
 
 	}
 	
+	/**
+	 * Relaciona as classes css com as categorias no banco 
+	 * @return mapa com nome da classe e a categoria
+	 */
 	protected Map<String, String> getClasses() {
 		List<String> classes = new ArrayList<>(){{
 			add("categoria__tag--aluguel");

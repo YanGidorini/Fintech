@@ -5,6 +5,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Classe que abstrai um usuário
+ */
 public class Usuario {
 	private int idUsuario;
 	private String nmUsuario;
@@ -48,6 +51,13 @@ public class Usuario {
 		this.setGenero(genero);
 	}
 	
+	/**
+	 * Método que encripta a string passada. Usado para criptografar a senha do usuário
+	 * @param senha
+	 * @return senha encriptada
+	 * @throws NoSuchAlgorithmException
+	 * @throws UnsupportedEncodingException
+	 */
 	public String encrypt(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 		algorithm.update(senha.getBytes("UTF-8"));
@@ -57,6 +67,9 @@ public class Usuario {
 		return hash.toString(16);
 	}
 	
+	/**
+	 * @return uma string com alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nmUsuario=" + nmUsuario + ", dtNascimento=" + dtNascimento
@@ -85,6 +98,11 @@ public class Usuario {
 	public String getSenha() {
 		return senha;
 	}
+	
+	/**
+	 * A senha é criptografada antes de ser atribuída ao objeto
+	 * @param senha
+	 */
 	public void setSenha(String senha) {
 		try {
 			this.senha = encrypt(senha);

@@ -14,6 +14,9 @@ import br.com.fintech.model.Objetivo;
 import br.com.fintech.model.Usuario;
 
 public class OracleObjetivoDAO implements DefaultDAO {
+	/**
+	 * Variável que armazena conexão
+	 */
 	private Connection conn = null;
 	
 	@Override
@@ -200,7 +203,7 @@ public class OracleObjetivoDAO implements DefaultDAO {
 
 	/**
 	 * Seleciona todos os objetivos de um usuário específico
-	 * @param idUser O código identificador do usuario
+	 * @param user Objeto usuario
 	 * @return lista com os objetivos
 	 */
 	public List<Objetivo> selectAllByUser(Usuario user) {

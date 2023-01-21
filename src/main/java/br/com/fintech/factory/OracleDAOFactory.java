@@ -1,6 +1,5 @@
 package br.com.fintech.factory;
 
-import br.com.fintech.dao.*;
 import br.com.fintech.dao.oracle.OracleCategoriaDAO;
 import br.com.fintech.dao.oracle.OracleCorretoraDAO;
 import br.com.fintech.dao.oracle.OracleDespesaDAO;
@@ -10,6 +9,9 @@ import br.com.fintech.dao.oracle.OracleReceitaDAO;
 import br.com.fintech.dao.oracle.OracleTipoAplicacaoDAO;
 import br.com.fintech.dao.oracle.OracleUsuarioDAO;
 
+/**
+ * Fábrica DAO Oracle
+ */
 public class OracleDAOFactory extends DAOFactory{
 	
 	@Override

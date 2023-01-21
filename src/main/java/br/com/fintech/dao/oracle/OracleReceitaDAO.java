@@ -16,8 +16,14 @@ import br.com.fintech.model.Receita;
 import br.com.fintech.model.Usuario;
 
 public class OracleReceitaDAO implements DefaultDAO {
+	/**
+	 * Variável que armazena conexão
+	 */
 	private Connection conn = null;
 	
+	/**
+	 * Mapa que armazena o número e o respectivo nome do mês
+	 */
 	private final Map<String, String> meses = new LinkedHashMap<>() {{
 	    put("12", "DEZEMBRO");
 	    put("11", "NOVEMBRO");
@@ -177,9 +183,6 @@ public class OracleReceitaDAO implements DefaultDAO {
 	}
 
 	@Override
-	/**
-	 * @return id O código identificador da despesa
-	 */
 	public Receita selectById(int id) {
 		Receita receita = null;
 		PreparedStatement stmt = null;
@@ -332,8 +335,6 @@ public class OracleReceitaDAO implements DefaultDAO {
 	/**
 	 * Seleciona os anos que possuem registros
 	 * @param user O objeto usuario
-	 * @param mes O mes em questão
-	 * @param ano O ano do mes
 	 * @return List com anos
 	 */
 	public List<String> selectYears(Usuario user) {

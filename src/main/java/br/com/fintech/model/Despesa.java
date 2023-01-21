@@ -1,5 +1,8 @@
 package br.com.fintech.model;
 
+/**
+ * Classe que abstrai uma despesa, um gasto, uma saída de valor.
+ */
 public class Despesa extends AtividadeFinanceira {
 	private int idDespesa;
 	private String dtDespesa;
@@ -7,7 +10,13 @@ public class Despesa extends AtividadeFinanceira {
 	private String ano;
 	private String mes;
 	private String hora;
+	/**
+	 * Atributo de relacionamento: o objeto Categoria associado
+	 */
 	private Categoria categoria; //relacionamento
+	/**
+	 * Atributo de relacionamento: o objeto Usuario associado
+	 */
 	private Usuario usuario; //relacionamento
 	
 	public Despesa() {
@@ -24,7 +33,10 @@ public class Despesa extends AtividadeFinanceira {
 		this.setUsuario(user);
 		this.setCategoria(categoria);
 	}
-	//usado para insert
+	
+	/**
+	 * Construtor usado para inserts no banco de dados, pois não precisa de id
+	 */
 	public Despesa(String nome, Double valor, String dtDespesa, Categoria categoria, Usuario usuario) {
 		this.setNome(nome);
 		this.setValor(valor);
@@ -43,7 +55,6 @@ public class Despesa extends AtividadeFinanceira {
 		this.setUsuario(usuario);
 	}
 	
-	//
 	public Despesa(int id, String nome, Double valor, String dtExtenso, String hr,  Categoria categoria, Usuario usuario) {
 		this.setIdDespesa(id);
 		this.setNome(nome);
@@ -54,7 +65,9 @@ public class Despesa extends AtividadeFinanceira {
 		this.setUsuario(usuario);
 	}
 	
-	
+	/**
+	 * @return uma string com todos ou alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "Despesa [idDespesa=" + idDespesa + ", nm=" + this.getNome() + ", valor=" + this.getValor() + ", dtHrDespesa=" + dtDespesa + ", dtExtenso=" + dtExtenso

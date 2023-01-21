@@ -7,14 +7,19 @@ import java.sql.SQLException;
 /**
  * Classe de conexão com o banco de dados
  * @author Yan
- *
  */
 public class DBConnectionManager {
-	//singleton
+	
+	/**
+	 * Atributo que armazena uma instancia da classe
+	 */
 	private static DBConnectionManager instance;
 	
 	private DBConnectionManager(){}
 	
+	/**
+	 * @return Instância da classe, caso não tenha alguma já instanciada
+	 */
 	public static DBConnectionManager getInstance() {
 		if (instance == null) {
 			instance = new DBConnectionManager();

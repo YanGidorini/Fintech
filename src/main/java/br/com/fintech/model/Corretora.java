@@ -1,7 +1,16 @@
 package br.com.fintech.model;
 
+/**
+ * Classe que abstrai uma corretora ou banco. Essa classe se associa com Investimento.java
+ */
 public class Corretora {
+	/**
+	 * id da corretora
+	 */
 	private int idCorretora;
+	/**
+	 * nome da corretora
+	 */
 	private String nmCorretora;
 	
 	public Corretora() {
@@ -16,7 +25,10 @@ public class Corretora {
 		this.setIdCorretora(id);
 		this.setNmCorretora(nmCorretora);
 	}
-		
+	
+	/**
+	 * @return uma string com todos ou alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "Corretora [idCorretora=" + idCorretora + ", nmCorretora=" + nmCorretora + "]";

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"br.com.fintech.controller"},{"l":"br.com.fintech.dao"},{"l":"br.com.fintech.database"},{"l":"br.com.fintech.factory"},{"l":"br.com.fintech.model"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"br.com.fintech.controller"},{"l":"br.com.fintech.dao"},{"l":"br.com.fintech.dao.oracle"},{"l":"br.com.fintech.database"},{"l":"br.com.fintech.factory"},{"l":"br.com.fintech.model"}];updateSearchResults();

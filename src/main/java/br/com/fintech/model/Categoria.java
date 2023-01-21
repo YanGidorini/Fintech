@@ -1,7 +1,16 @@
 package br.com.fintech.model;
 
+/**
+ * Classe que abstrai uma categoria, um enquadramento para uma despesa
+ */
 public class Categoria {
+	/**
+	 * id da categoria
+	 */
 	private int idCategoria;
+	/**
+	 * nome da categoria
+	 */
 	private String nmCategoria;
 	
 	public Categoria() {
@@ -17,7 +26,9 @@ public class Categoria {
 		this.setIdCategoria(idCategoria);
 	}
 	
-	
+	/**
+	 * @return uma string com todos ou alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "Categoria [idCategoria=" + idCategoria + ", nmCategoria=" + nmCategoria + "]";

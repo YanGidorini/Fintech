@@ -7,6 +7,9 @@ public class Receita extends AtividadeFinanceira {
 	private String ano;
 	private String mes;
 	private String hora;
+	/**
+	 * Atributo de relacionamento: o objeto Usuario associado
+	 */
 	private Usuario usuario; //relacionamento
 	
 	public Receita() {}
@@ -44,6 +47,9 @@ public class Receita extends AtividadeFinanceira {
 		this.setUsuario(usuario);
 	}
 	
+	/**
+	 * @return uma string com todos ou alguns atributos do objeto
+	 */
 	@Override
 	public String toString() {
 		return "Receita [idReceita=" + idReceita + ", dtReceita=" + dtReceita + ", dtExtenso=" + dtExtenso + ", hora="

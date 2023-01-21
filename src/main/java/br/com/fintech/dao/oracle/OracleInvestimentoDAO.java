@@ -16,6 +16,9 @@ import br.com.fintech.model.TipoAplicacao;
 import br.com.fintech.model.Usuario;
 
 public class OracleInvestimentoDAO implements DefaultDAO {
+	/**
+	 * Variável que armazena conexão
+	 */
 	private Connection conn = null;
 	
 	@Override
@@ -252,7 +255,7 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 	
 	/**
 	 * Seleciona todos os investimentos de um usuário
-	 * @param idUsuario O código identificador do usuário
+	 * @param user O objeto usuário
 	 * @return Lista com todos os investimentos de um usuario específico com as datas formatadas para visualização
 	 */
 	public List<Investimento> selectAllByUser(Usuario user) {
@@ -321,8 +324,12 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 		return invList;
 	}
 	
-	
-	public Double sumAllInvestimentosByUser(int idUser) {
+	/**
+	 * Soma todos os investimentos do usuário
+	 * @param user Objeto usuário
+	 * @return o valor soma dos investimentos
+	 */
+	public Double sumAllInvestimentosByUser(Usuario user) {
 		Double sum = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -332,7 +339,7 @@ public class OracleInvestimentoDAO implements DefaultDAO {
 			
 			String sql = "SELECT SUM(vl_aplicacao) as sum_investimentos FROM t_investimento WHERE cd_usuario = ?";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setInt(1, user.getIdUsuario());
 						
 			result = stmt.executeQuery();
 	

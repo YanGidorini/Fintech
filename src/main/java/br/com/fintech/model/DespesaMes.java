@@ -2,6 +2,9 @@ package br.com.fintech.model;
 
 import java.util.List;
 
+/**
+ * Classe que armazena o ano, o mes, uma lista de objetos Despesas e o total do mes, ou seja, essa classe serve para sumarizar por mes as despesas e facilitar na construção da jsp
+ */
 public class DespesaMes {
 
 	  private String year;

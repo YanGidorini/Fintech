@@ -17,7 +17,13 @@ import br.com.fintech.model.Despesa;
 import br.com.fintech.model.Usuario;
 
 public class OracleDespesaDAO implements DefaultDAO {
+	/**
+	 * Variável que armazena conexão
+	 */
 	private Connection conn = null;
+	/**
+	 * Mapa que armazena o número e respectivo nome do mês
+	 */
 	private final Map<String, String> meses = new LinkedHashMap<>() {{
 	    put("12", "DEZEMBRO");
 	    put("11", "NOVEMBRO");
@@ -186,9 +192,6 @@ public class OracleDespesaDAO implements DefaultDAO {
 	}
 
 	@Override
-	/**
-	 * @return id O código identificador da despesa
-	 */
 	public Despesa selectById(int id) {
 		Despesa despesa = null;
 		PreparedStatement stmt = null;
@@ -237,7 +240,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 	
 	/**
 	 * Método usado para recuperar todas as despesas de um usuário para mostrar na tela, formatado o máximo possível
-	 * @param idUser O código identificador do usuario
+	 * @param user O código objeto usuario
 	 * @param mes O mes das despesas
 	 * @param ano O ano das despesas
 	 * @return Lista das despesas de um usuario especifico
@@ -307,7 +310,7 @@ public class OracleDespesaDAO implements DefaultDAO {
 	
 	/**
 	 * Soma todas as despesas de um usuário
-	 * @param idUser O código identificador do usuario
+	 * @param user O objeto usuario
 	 * @return A soma
 	 */
 	public Double sumAllDespesasByUser(int idUser) {
@@ -389,8 +392,6 @@ public class OracleDespesaDAO implements DefaultDAO {
 	/**
 	 * Seleciona os anos que possuem registros
 	 * @param user O objeto usuario
-	 * @param mes O mes em questão
-	 * @param ano O ano do mes
 	 * @return List com anos
 	 */
 	public List<String> selectYears(Usuario user) {
