@@ -53,7 +53,7 @@
                     <div class="header__account d-flex align-items-center">
                         <span class="header__account-name">${sessionScope.user.nmUsuario}</span>
                         <div class="header__account-photo">
-                            <img src="${pageContext.request.contextPath}/resources/imgs/FotoPerfil.png" alt="foto de perfil">
+                            <img src="${pageContext.request.contextPath}/resources/imgs/perfil.png" alt="foto de perfil">
                         </div>
                     </div>
                 </a>

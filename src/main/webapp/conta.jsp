@@ -23,7 +23,7 @@
                 <div class="card--default p-5 full-height">
                     <input type="file" id="input-photo" accept="image/*" class="d-none">
                     <label for="input-photo" class="account-photo mb-3">
-                        <img src="${pageContext.request.contextPath}/resources/imgs/FotoPerfil.png" alt="foto de perfil">
+                        <img src="${pageContext.request.contextPath}/resources/imgs/perfil.png" alt="foto de perfil">
                     </label>
 
                     <p class="title title--500 mb-0">${user.nmUsuario}</p>
