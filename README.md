@@ -42,5 +42,6 @@ A configuração padrão do banco dados segue abaixo, porém você pode configur
 - SID: xe
 
 ---
-# Overview do projeto
-<a href="{video-url}" title="Link Title"><img src="{image-url}" alt="Alternate Text" /></a>
+# Review do projeto - clique na imagem
+
+<a href="https://youtu.be/7r-M2QhHcVg" title="Link Title"><img src="https://media.discordapp.net/attachments/730415785608085565/1066822756890579104/Capturar.PNG?width=1369&height=670" alt="Project overview" /></a>
