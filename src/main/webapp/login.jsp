@@ -35,7 +35,6 @@
                         <div class="form__input-field">
                             <label for="pswd" class="form__label">Senha<span class="form__mandatory">*</span></label>
                             <input class="form__input" id="pswd" type="password" name="pswd" minlength="6" maxlength="32" required>
-                            <a href="" class="forgot-pswd">Esqueceu a senha?</a>
                         </div>
                         
                         <button class="form__btn" type="submit">Entrar</button>

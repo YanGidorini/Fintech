@@ -264,6 +264,7 @@ a[title="Minha conta"]:hover{
     bottom: 0; right: 0;
     text-align: center;
     width: 100%;
+    z-index: 99;
 }
 .mobile-menu__item{
     fill: white;
