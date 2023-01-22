@@ -53,7 +53,7 @@
 
                         <div class="form__input-field">
                             <label for="genero" class="form__label form__label--select">Gênero<span class="form__mandatory">*</span></label>
-                            <select class="form__input form__input--select" id="genero" name="genero" required>
+                            <select class="form__input form__input--select" id="genero" name="genero" style="width:auto;" required>
                                 <option value="" selected disabled>Selecione</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Feminino</option>
