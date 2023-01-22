@@ -11,6 +11,12 @@
 	<title>Receitas</title>
 </head>
 
+<style>
+	svg.revenue{
+		fill: var(--cta);
+	}
+</style>
+
 <body>
 	<jsp:include page="./parts/header.jsp"/>
 	

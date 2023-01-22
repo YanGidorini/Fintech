@@ -11,6 +11,15 @@
 	<title>Objetivos</title>
 </head>
 
+<style>
+	.header svg.target > circle:nth-child(-n + 2){
+		stroke: var(--cta);
+	}
+	.header svg.target > circle:last-child{
+		fill: var(--cta);
+	}
+</style>
+
 <body>
 	<jsp:include page="./parts/header.jsp"/>
 	

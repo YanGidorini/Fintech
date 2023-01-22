@@ -41,9 +41,9 @@
                 </a>
            		<a href="${pageContext.request.contextPath}/objetivos" title="Meus objetivos">
                        <svg class="header__item target" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-                       <circle cx="18.9054" cy="18.5" r="16.5" stroke="white" stroke-width="3"/>
-                       <circle cx="18.9054" cy="18.5" r="8.25" stroke="white" stroke-width="3"/>
-                       <circle cx="18.9054" cy="18.5" r="2.75" fill="white"/>
+	                       <circle cx="18.9054" cy="18.5" r="16.5" stroke="white" stroke-width="3"/>
+	                       <circle cx="18.9054" cy="18.5" r="8.25" stroke="white" stroke-width="3"/>
+	                       <circle cx="18.9054" cy="18.5" r="2.75" fill="white"/>
                        </svg>
             	</a>
             </nav>

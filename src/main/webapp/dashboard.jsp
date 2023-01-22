@@ -10,6 +10,13 @@
 	<fmt:setLocale value="pt_BR" />
 	<title>Dashboard</title>
 </head>
+
+<style>
+	svg.home{
+		fill: var(--cta);
+	}
+</style>
+
 <body>
 	<jsp:include page="./parts/header.jsp"/>
 	

@@ -11,6 +11,12 @@
 	<title>Despesas</title>
 </head>
 
+<style>
+	svg.spent{
+		fill: var(--cta);
+	}
+</style>
+
 <body>
 	<jsp:include page="./parts/header.jsp"/>
 	

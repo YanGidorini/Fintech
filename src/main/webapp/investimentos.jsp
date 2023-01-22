@@ -11,6 +11,12 @@
 	<title>Investimentos</title>
 </head>
 
+<style>
+	svg.investment{
+		fill: var(--cta);
+	}
+</style>
+
 <body>
 	<jsp:include page="./parts/header.jsp"/>
 	

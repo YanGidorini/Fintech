@@ -10,6 +10,13 @@
 	<fmt:setLocale value="pt_BR" />
 	<title>Minha Conta</title>
 </head>
+
+<style>
+	.header__account-name{
+		color: var(--cta);
+	}
+</style>
+
 <body>
 	<jsp:include page="./parts/header.jsp"/>
 	
