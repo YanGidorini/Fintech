@@ -59,4 +59,4 @@ Este projeto é um trabalho de 1° ano da Faculdade, que consiste em uma aplica�
 ### **Review do projeto**
 Veja como o projeto funciona clicando na imagem abaixo:
 
-<a href="https://youtu.be/7r-M2QhHcVg" title="Link Title"><img src="https://media.discordapp.net/attachments/730415785608085565/1066822756890579104/Capturar.PNG?width=1369&height=670" alt="Project overview" /></a>
+<a href="https://youtu.be/7r-M2QhHcVg" title="Fintech review"><img src="https://media.discordapp.net/attachments/730415785608085565/1066822756890579104/Capturar.PNG?width=1369&height=670" alt="Project review" /></a>
